@@ -70,3 +70,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+group :test, :development do
+  gem 'dotenv-rails'
+end
