@@ -1,0 +1,13 @@
+<div class="banner">
+  <header>
+    <div class="logo">Logo</div>
+    <%= link_to  "Login", "" %>
+  </header>
+  <div class="banner_body">
+    <h1>Blog y noticias de programación y tecnología</h1>
+    <%= form_with url: search_path  do |f| %>
+      <%= f.text_field :q, placeholder: "Busca un blog o una noticia" %>
+      <%= f.submit "Buscar" %>
+    <% end %>
+  </div>
+</div>
