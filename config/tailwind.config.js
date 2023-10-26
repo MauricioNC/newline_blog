@@ -12,6 +12,12 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      height: {
+        'bannerH': '450px'
+      },
+      boxShadow: {
+        'tagsShadow': '#076678'
+      }
     },
   },
   plugins: [

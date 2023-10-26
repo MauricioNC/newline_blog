@@ -1,13 +1,18 @@
-<div class="banner">
-  <header>
+<div class="banner bg-blue-200 col-span-12 h-bannerH">
+  <header class="flex flex-row justify-between items-center">
     <div class="logo">Logo</div>
     <%= link_to  "Login", "" %>
   </header>
-  <div class="banner_body">
-    <h1>Blog y noticias de programación y tecnología</h1>
+  <div class="banner_body h-full flex flex-col justify-center">
+    <h1 class="text-2xl text-center break-words font-bold">Blog y noticias de programación y tecnología</h1>
     <%= form_with url: search_path  do |f| %>
       <%= f.text_field :q, placeholder: "Busca un blog o una noticia" %>
       <%= f.submit "Buscar" %>
     <% end %>
+    <div class="banner_tags">
+      <% @tags.each do |tag| %>
+        <%= button_to tag.tag, "path" %>
+      <% end %>
+    </div>
   </div>
 </div>

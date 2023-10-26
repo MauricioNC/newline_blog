@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def home
+    @tags = Tag.limit(5).order("RANDOM()")
   end
 
   def search
