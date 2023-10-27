@@ -1,13 +1,11 @@
-<% if posts %>
+<% unless posts.empty? %>
   <div class="cards">  
     <% posts.each do |post| %>
       <div class="card_<%= post.id %>">
         <div class="image"><%# This div would be replaced later with image tag %></div>
         <div class="body">
-          <h1>Title of the card</h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quae quibusdam exercitationem quaerat nesciunt eum sapiente recusandae, molestiae excepturi, libero illo maiores molestias! Facilis quidem ex minima voluptatem similique accusantium?
-          </p>
+          <h1><%= post.title %></h1>
+          <p><%= post.description  %></p>
           <%= link_to  "Leer más", "" %>
         </div>
       </div>
