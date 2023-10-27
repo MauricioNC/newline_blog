@@ -1,20 +1,4 @@
 <% if posts  %>
   <h1>Results for <strong><%= query if query %></strong></h1>
-  <div class="search_results">
-    <% posts.each do |post|%>
-      <div class="content">
-        <%= post.content %>
-      </div>
-      <div class="post_footer">
-        <div class="tags">
-          <% post.tags.each do |tag| %>
-            <span><%= tag %></span>
-          <% end %>
-        </div>
-        <div class="raiting">
-          <%= post.raiting %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <% render 'shared/cards', locals: { posts: @posts } %>
 <% end %>

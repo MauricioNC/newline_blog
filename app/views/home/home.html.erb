@@ -1,5 +1,7 @@
 <%= render 'shared/banner' %>
 
-<div>
-  <%= turbo_frame_tag "search_results" %>
+<div class="col-span-12">
+  <%= turbo_frame_tag "posts" do %>
+    <%= render 'shared/cards',  posts: @posts %>
+  <% end %>
 </div>

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def home
+    @posts = Post.all
     @tags = Tag.limit(5).order("RANDOM()")
   end
 
