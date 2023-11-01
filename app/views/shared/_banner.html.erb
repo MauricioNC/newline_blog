@@ -9,6 +9,8 @@
       <%= f.text_field :q, placeholder: "Busca un blog o una noticia" %>
       <%= f.submit "Buscar" %>
     <% end %>
-    <%= render 'shared/tags', tags: @tags %>
+    <div class="banner_tags flex justify-center align gap-2.5 shrink-0 flex-wrap mt-11">
+      <%= render 'shared/tags', tags: @tags %>
+    </div>
   </div>
 </div>
