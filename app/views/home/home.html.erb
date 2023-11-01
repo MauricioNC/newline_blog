@@ -1,6 +1,12 @@
 <%= render 'shared/banner' %>
 
-<div class="col-span-12">
+<div class="col-span-12 border-b-2 border-black h-fit mt-12 p-2 flex justify-between">
+  <%= link_to  "Noticias dev", "" %>
+  <%= link_to  "Articulos", "" %>
+  <%= link_to  "Tutoriales", "" %>
+</div>
+
+<div class="col-span-12 mt-8">
   <%= turbo_frame_tag "posts" do %>
     <%= render 'shared/cards',  posts: @posts %>
   <% end %>

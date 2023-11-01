@@ -1,4 +1,4 @@
-<div class="banner bg-blue-200 col-span-12 h-bannerH">
+<div class="banner col-span-12 h-bannerH">
   <header class="flex flex-row justify-between items-center">
     <div class="logo">Logo</div>
     <%= link_to  "Login", "" %>
@@ -9,10 +9,6 @@
       <%= f.text_field :q, placeholder: "Busca un blog o una noticia" %>
       <%= f.submit "Buscar" %>
     <% end %>
-    <div class="banner_tags">
-      <% @tags.each do |tag| %>
-        <%= button_to tag.tag, "path" %>
-      <% end %>
-    </div>
+    <%= render 'shared/tags', tags: @tags %>
   </div>
 </div>
