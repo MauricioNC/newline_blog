@@ -1,11 +1,11 @@
 <div class="relative col-span-12 h-screen">
-  <header class="bg-red-200 col-span-12 flex justify-between items-center my-8">
+  <header class="col-span-12 flex justify-between items-center my-8">
     <div class="back">
       <span class="flex gap-1 justify-center items-center"><i class="fa-solid fa-arrow-left"></i>Back</span>
     </div>
     <%= link_to 'Login', "", class: "border-2 border-black rounded-lg px-4 py-1.5" %>
   </header>
-  <div class="bg-blue-200 col-span-12">
+  <div class="col-span-12">
     <% @post.each do |p| %>
       <div><%= p.title %></div>
       <div><%= p.content %></div>
@@ -16,7 +16,7 @@
         <% end%>
       </ul>
       <% end %>
-      <div class="col-span-12 bg-green-300 flex flex-wrap justify-start items-center gap-3 mt-6">
+      <div class="col-span-12 flex flex-wrap justify-start items-center gap-3 mt-6">
         <%= render "shared/tags", tags: @tags %>
       </div>
   </div>
