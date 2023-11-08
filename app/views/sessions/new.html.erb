@@ -1,3 +1,6 @@
+<%= link_to request.referer do %>
+  <span class="flex gap-1 justify-center items-center"><i class="fa-solid fa-arrow-left"></i>Back</span>
+<% end %>
 <%= form_with path: "/sesions/login" do |f| %>
   <%= f.text_field :email, placeholder: "Email" %>
   <%= f.password_field :password, placeholder: "Password" %>
