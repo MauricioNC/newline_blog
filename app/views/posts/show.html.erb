@@ -1,31 +1,8 @@
-<div class="relative col-span-12 h-screen">
-  <header class="col-span-12 flex justify-between items-center my-8">
-    <div class="back">
-      <span class="flex gap-1 justify-center items-center"><i class="fa-solid fa-arrow-left"></i>Back</span>
-    </div>
-    <%= link_to 'Login', "", class: "border-2 border-black rounded-lg px-4 py-1.5" %>
-  </header>
-  <div class="col-span-12">
-    <% @post.each do |p| %>
-      <div><%= p.title %></div>
-      <div><%= p.content %></div>
-      <div><%= p.raiting %></div>
-      <ul>
-        <% p.tags.each do |t| %>
-          <li><%= t %></li>
-        <% end%>
-      </ul>
-      <% end %>
-      <div class="col-span-12 flex flex-wrap justify-start items-center gap-3 mt-6">
-        <%= render "shared/tags", tags: @tags %>
-      </div>
-  </div>
+<%= render 'post', post: @post %>
+
+<div class="col-span-12 mt-8">
+  <h2>Mas contenido como este</h2>
+  <%= render "shared/cards", posts: @posts %>
+</div>
   
-  <div class="col-span-12 mt-8">
-    <h2>Mas contenido como este</h2>
-  
-    <%= render "shared/cards", posts: @posts %>
-  </div>
-  
-  <%= render "shared/footer" %>
-</ div>
+<%= render "shared/footer" %>

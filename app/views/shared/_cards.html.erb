@@ -6,7 +6,7 @@
         <div class="body">
           <h1><%= post.title %></h1>
           <p><%= post.description  %></p>
-          <%= link_to  "Leer más", "" %>
+          <%= link_to "Leer más", "/posts/#{post.user.username}/#{post.title}" %>
         </div>
       </div>
     <% end %>
