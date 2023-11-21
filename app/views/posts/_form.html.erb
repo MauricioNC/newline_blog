@@ -2,5 +2,6 @@
   <%= f.text_field :title, placeholder: "Title" %>
   <%= f.text_area :description, placeholder: "Description" %>
   <%= f.rich_text_area :content %>
+  <%= f.select :tag_ids, Tag.pluck(:tag, :id), {include_blank: true}, {multiple: true, data: { controller: 'slim' } } %>
   <%= f.submit %>
 <% end %>
