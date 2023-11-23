@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :images
+  has_one_attached :banner
   has_rich_text :content
 
   belongs_to :user
