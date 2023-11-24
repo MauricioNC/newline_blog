@@ -5,3 +5,5 @@ import "@fortawesome/fontawesome-free"
 
 import "trix"
 import "@rails/actiontext"
+
+import "./highlight"
