@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate!, only: [ :new, :create ]
-  before_action :set_user, only: [ :show ]
+  before_action :set_user, only: [ :show, :update ]
+  before_action :set_post, only: [ :edit, :update ]
 
   def show
     @post = @user.posts.find_by_title(params[:post_title])
@@ -10,6 +11,9 @@ class PostsController < ApplicationController
 
   def new
     @post = @current_user.posts.new
+  end
+
+  def edit
   end
 
   def create
@@ -22,10 +26,22 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    if @post.update(posts_params)
+      redirect_to show_post_path(current_user.username, @post.title), notice: "Post was updated successfully"
+    else
+      render :edit, notice: "Something went wrong, try again",status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_user
     @user = User.find_by_username(params[:username])
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   def posts_params
