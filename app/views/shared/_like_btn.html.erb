@@ -1,0 +1,3 @@
+<%= button_to post_likes_path(post.id), class: "liked", data: { likes_target: "like", action: "click->likes#like" } do %>
+  <i class="fa-solid fa-thumbs-up like_icon"></i><%= post.likes.count %>
+<% end %>

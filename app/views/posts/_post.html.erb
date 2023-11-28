@@ -9,11 +9,20 @@
     <div><%= post.title %></div>
     <div><%= image_tag post.banner if post.banner.attached? %></div>
     <div><%= post.content %></div>
-    <div><%= post.raiting %></div>
     <ul>
       <% post.tags.each do |t| %>
         <li><%= t.tag %></li>
       <% end%>
     </ul>
   </div>
+</div>
+
+<div class="col-span-12 mt-8" data-controller="likes">
+  <%= turbo_frame_tag "like_btn" do %>
+    <% unless like %>
+      <%= render 'shared/like_btn', post: post %>
+    <% else %>
+      <%= render 'shared/unlike_btn', post: post, like: like %>
+    <% end %>
+  <% end %>
 </div>
