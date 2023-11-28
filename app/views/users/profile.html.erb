@@ -1,4 +1,18 @@
-<div>
-  <h1 class="font-bold text-4xl">Users#profile</h1>
-  <p>Find me in app/views/users/profile.html.erb</p>
+<div class="col-span-12 flex justify-start">
+  <%= link_to :back, class: "flex gap-1 justify-center items-center" do %>
+    <i class="fa-solid fa-arrow-left"></i> Back
+  <% end %>
 </div>
+
+<%= render 'user_info', user: @user %>
+
+<div class="col-span-12 mt-16">
+  <nav class="w-full flex justify-between items-center break-normal">
+    <div><%= link_to "Mis posts", "" %></div>
+    <div><i class="fa-solid fa-filter text-gray-500"></i></div>
+  </nav>
+</div>
+
+<%= turbo_frame_tag "my_posts", class: "col-span-12" do %>
+  <%= render 'shared/cards', posts: @posts %>
+<% end %>

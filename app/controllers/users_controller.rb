@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
   end
 
@@ -15,5 +16,7 @@ class UsersController < ApplicationController
   end
 
   def profile
+    @user = current_user
+    @posts = @user.posts.all
   end
 end
