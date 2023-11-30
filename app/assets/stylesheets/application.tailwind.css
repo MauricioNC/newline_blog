@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+@import 'actiontext.css';
 
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .burguer-menu-lines {
+    @apply w-full h-1 block rounded-lg bg-slate-950 absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2 transition-all duration-500;
+  }
+
+  .top-line {
+    transform: translate(-50%, -13px);
+  }
+  .bottom-line {
+    transform: translate(-50%, 8px);
+  }
+
+  .openmenu .top-line {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .openmenu .bottom-line {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .openmenu .mid-line {
+    width: 0;
   }
 }
-
-*/
-@import 'actiontext.css';
