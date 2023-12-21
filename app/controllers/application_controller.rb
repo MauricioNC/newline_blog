@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_user
   helper_method :current_user
 
   def authenticate!
@@ -12,5 +13,15 @@ class ApplicationController < ActionController::Base
 
         User.find(session[:user_id])
       end
+  end
+
+  def set_user
+    @user = if params[:id]
+              User.find(params[:id])
+            elsif params[:username]
+              User.find_by_username(params[:username])
+            else
+              current_user
+            end
   end
 end
