@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update]
+
   def index
   end
 
@@ -23,6 +25,14 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = if params[:id]
+              User.find(params[:id])
+            else
+              current_user
+            end
+  end
 
   def user_params
     params.require(:user).permit(:fullname, :username, :email, :password, :biography)

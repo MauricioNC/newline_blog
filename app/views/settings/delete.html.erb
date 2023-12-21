@@ -1,1 +1,13 @@
 <%= render 'account_nav' %>
+<div class="col-span-12 mt-10">
+  <p class="my-5">
+    <span class="text-red-600 font-semibold">Warning!!</span> By deleting your account you won't be able to restore your information, all the changes are irreversibles. All your posts and liked posts will be deleted.
+  </p>
+  <%= form_with(url: delete_account_path, method: :delete) do |f| %>
+    <div class="flex flex-col items-start gap-2">
+      <%= f.label :password, "Password" %>
+      <%= f.password_field :password, class: "w-full rounded" %>
+    </div>
+    <%= f.submit "Delete account", class: "bg-red-500 p-2 text-white rounded-lg mt-5" %>
+  <% end %>
+</div>

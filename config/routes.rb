@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get '/notifications', to: 'settings#notifications', as: 'notification_settings'
   get '/password', to: 'settings#password', as: 'password_settings'
   get '/delete', to: 'settings#delete', as: 'delete_settings'
+  delete '/delete', to: 'settings#delete_account', as: 'delete_account'
 end
