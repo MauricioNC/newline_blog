@@ -6,4 +6,6 @@ class SettingsController < ApplicationController
   def password; end
 
   def delete; end
+
+  def delete_account; end
 end
