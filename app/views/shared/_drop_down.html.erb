@@ -1,6 +1,6 @@
 <div class="w-48 p-4 bg-white absolute shadow-2xl right-0 mt-3 translate-x-64 transition-all duration-500" data-menu-target="dropdown">
   <ul>
-    <li class="py-1"><%= link_to "Perfil", profile_path(current_user.username) %></li>
+    <li class="py-1"><%= link_to "Perfil", profile_settings_path %></li>
     <li class="py-1"><%= link_to "Settings", "", data: { menu_target: "settings", action: "click->menu#preventReload", menu_request_param: "settings" } %></li>
     <hr>
     <li class="py-1"><%= button_to "Logut #{current_user.username}", logout_path, method: :delete %></li>
