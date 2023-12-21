@@ -23,11 +23,6 @@ class UsersController < ApplicationController
   def delete
   end
 
-  def profile
-    @user = current_user
-    @posts = @user.posts.all
-  end
-
   private
 
   def set_user
