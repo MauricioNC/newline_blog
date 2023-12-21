@@ -1,16 +1,19 @@
-<% unless posts.empty? %>
-  <div class="cards">  
-    <% posts.each do |post| %>
-      <div class="card_<%= post.id %>">
-        <div class="image"><%# This div would be replaced later with image tag %></div>
-        <div class="body">
-          <h1><%= post.title %></h1>
-          <p><%= post.description  %></p>
-          <%= link_to "Leer más", "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } %>
+
+<%= turbo_frame_tag 'content', class: 'col-span-12' do %>
+  <% unless posts.empty? %>
+    <div class="cards col-span-12">
+      <% posts.each do |post| %>
+        <div class="card_<%= post.id %>">
+          <div class="image"><%# This div would be replaced later with image tag %></div>
+          <div class="body">
+            <h1><%= post.title %></h1>
+            <p><%= post.description  %></p>
+            <%= link_to "Leer más", "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <p>Nothing to show yet</p>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Nothing to show yet</p>
+  <% end %>
 <% end %>

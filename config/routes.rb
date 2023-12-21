@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/account', to: 'users#edit'
-
-  get '/profile/:username', to: 'users#profile'
   post '/search', to: 'home#search'
   get 'posts/:username/:post_title', to: 'posts#show', as: 'show_post'
+
+  # Profile paths
+  get '/profile/:username/', to: 'profile#profile', as: 'profile'
+  get '/profile/:username/all', to: 'profile#all', as: 'user_posts_all'
+  get '/profile/:username/liked', to: 'profile#liked', as: 'user_posts_liked'
 end

@@ -1,0 +1,23 @@
+<div class="col-span-12 flex justify-start" id='profile_form' data-turbo-permanent>
+  <%= link_to :back, class: "flex gap-1 justify-center items-center" do %>
+    <i class="fa-solid fa-arrow-left"></i> Back
+  <% end %>
+</div>
+<div class="col-span-12 mt-12 flex flex-row justify-start items-center gap-5">
+  <div class="user-picture">
+    <i class="fa-solid fa-circle-user w-16 h-16"></i>
+  </div>
+  <div class="col-span-12">
+    <div class="username"><%= current_user.username %></div>
+    <%= link_to "Editar perfil", account_path, class: "text-green-600" %>
+  </div>
+</div>
+<div class="col-span-12 mt-16 mb-8">
+  <nav class="w-full">
+    <ul class="w-full flex justify-start items-center break-normal">
+      <li class="mr-4"><%= link_to "Mis posts", user_posts_all_path(current_user.username)  %></li>
+      <li class="mr-4"><%= link_to "Liked", user_posts_liked_path(current_user.username) %></li>
+    </ul>
+  </nav>
+</div>
+<%= turbo_frame_tag "content", src: user_posts_all_path(current_user.username), data: { turbo_action: "advance" }, class: "col-span-12" %>
