@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
   def index
   end
 
@@ -14,7 +13,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-     redirect_to account_path, notice: "Your information was updated successfully"
+     redirect_to profile_settings_path, notice: "Your information was updated successfully"
     else
       render :edit, notice: "Something went wrong, try again", status: :unprocessable_entity
     end
@@ -24,14 +23,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_user
-    if params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
-  end
 
   def user_params
     params.require(:user).permit(:fullname, :username, :email, :password, :biography)
