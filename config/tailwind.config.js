@@ -24,8 +24,9 @@ module.exports = {
         'tagsShadow': '#076678'
       },
       colors: {
+        'gv-baltic-sea': '#282828',
         'gv-red-orange': '#FB4934',
-        'gv-dark': '#1D2021',
+        'gv-dark-jungle': '#1D2021',
         'gv-oasis': '#FBF1C7',
         'gv-smalt-blue': '#458588',
         'gv-tulip-pink': '#B16286',
