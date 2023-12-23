@@ -2,7 +2,7 @@ class DeletePostJob
   include Sidekiq::Job
 
   def perform(post_id)
-    post = Post.find(post_id)
-    post.destroy
+    post = Post.where(id: post_id)
+    post.first.destroy if post.any?
   end
 end
