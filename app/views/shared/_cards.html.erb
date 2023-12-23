@@ -1,18 +1,31 @@
-
 <%= turbo_frame_tag 'content', class: 'col-span-12' do %>
   <% unless posts.empty? %>
-    <div class="cards col-span-12">
+    <section class="cards col-span-12">
       <% posts.each do |post| %>
-        <div class="card_<%= post.id %>">
-          <div class="image"><%# This div would be replaced later with image tag %></div>
-          <div class="body">
+        <article id="content_article_card_<%= post.id %>">
+          <header>
+            <div><%= post.user.username %></div>
+            <div><%= post.created_at.strftime("%d %B of %Y") %></div>
+            <% if request.fullpath.split("/")[1] == 'profile' %>
+              <div>
+                <button><i class="fa-solid fa-ellipsis"></i></button>
+                <ul>
+                  <li id="card"><%= button_to 'Delete', [post], method: :delete, data: { turbo_confirm: '¿Estás seguro que quieres eliminar este post?, no será posible recuperar la información una vez eliminado' } %></li>
+                </ul>
+              </div>
+            <% end %>
+          </header>
+          <div>
+            <div class="image"><%# This div would be replaced later with image tag %></div>
             <h1><%= post.title %></h1>
             <p><%= post.description  %></p>
-            <%= link_to "Leer más", "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } %>
           </div>
-        </div>
+          <footer>
+            <%= link_to "Leer más", "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } %>
+          </footer>
+        </article>
       <% end %>
-    </div>
+    </section>
   <% else %>
     <p>Nothing to show yet</p>
   <% end %>

@@ -35,6 +35,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    DeletePostJob.perform_async(params[:id])
+    render turbo_stream: turbo_stream.remove("content_article_card_#{params[:id]}")
+  end
+
   private
 
   def set_user
