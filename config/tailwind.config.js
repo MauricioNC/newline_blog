@@ -28,6 +28,7 @@ module.exports = {
         'gv-red-orange': '#FB4934',
         'gv-dark-jungle': '#1D2021',
         'gv-oasis': '#FBF1C7',
+        'gv-oasis-400': 'rgba(251, 241, 199, 0.4)',
         'gv-smalt-blue': '#458588',
         'gv-tulip-pink': '#B16286',
         'gv-grey-green': '#689D6A',
