@@ -1,24 +1,16 @@
 <%= render 'shared/banner' %>
-
 <div class="col-span-12 border-b-2 border-black h-fit mt-12 p-2 flex justify-between">
   <%= link_to  "Noticias dev", "" %>
   <%= link_to  "Articulos", "" %>
   <%= link_to  "Tutoriales", "" %>
 </div>
-
 <div class="col-span-12 mt-8">
   <%= render 'shared/cards',  posts: @posts %>
 </div>
-
-<div class="col-span-12">
-  <%= link_to  "Ver más", "" %>
-</div>
-
 <div class="col-span-12 mt-16 flex flex-col gap-5">
   <h2 class="text-xl text-left">Puedes encontrar contenido relacionado con tags específicas</h2>
   <div class="banner_tags flex justify-left align gap-2.5 shrink-0 flex-wrap mt-11">
-      <%= render 'shared/tags', tags: @tags %>
-    </div>
+    <%= render 'shared/tags', tags: @tags %>
+  </div>
 </div>
-
 <%= render 'shared/footer' %>

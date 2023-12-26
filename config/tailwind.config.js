@@ -38,11 +38,12 @@ module.exports = {
         'gv-fire': '#AF3A03',
       },
       boxShadow: {
-        'hard': '4px 4px 0 0 #000'
+        'hard': '4px 6px 0 0 #000',
       }
     },
   },
   plugins: [
+    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),

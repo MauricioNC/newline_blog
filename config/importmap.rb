@@ -9,3 +9,5 @@ pin "@fortawesome/fontawesome-free", to: "https://ga.jspm.io/npm:@fortawesome/fo
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
 pin "slim-select", to: "https://ga.jspm.io/npm:slim-select@2.6.0/dist/slimselect.es.js"
+pin "@tailwindcss/line-clamp", to: "https://ga.jspm.io/npm:@tailwindcss/line-clamp@0.4.4/src/index.js"
+pin "tailwindcss/plugin", to: "https://ga.jspm.io/npm:tailwindcss@3.4.0/plugin.js"
