@@ -2,27 +2,47 @@
   <% unless posts.empty? %>
     <section class="cards col-span-12">
       <% posts.each do |post| %>
-        <article id="content_article_card_<%= post.id %>">
-          <header>
-            <div><%= post.user.username %></div>
-            <div><%= post.created_at.strftime("%d %B of %Y") %></div>
-            <% if request.fullpath.split("/")[1] == 'profile' %>
-              <div>
-                <button><i class="fa-solid fa-ellipsis"></i></button>
-                <ul>
-                  <li id="card"><%= button_to 'Delete', [post], method: :delete, data: { turbo_confirm: '¿Estás seguro que quieres eliminar este post?, no será posible recuperar la información una vez eliminado' } %></li>
-                </ul>
-              </div>
+        <article id="content_article_card_<%= post.id %>" class="flex flex-col xs:gap-5 mt-4 bg-gv-dark-jungle border-2 border-black shadow-hard rounded-lg overflow-hidden">
+          <div class="flex flex-col">
+            <% if post.banner.present? %>
+              <figure class="w-full h-40 overflow-hidden">
+                <%= image_tag post.banner, alt: "Image banner", class: "w-full h-full object-cover" %>
+              </figure>
             <% end %>
-          </header>
-          <div>
-            <div class="image"><%# This div would be replaced later with image tag %></div>
-            <h1><%= post.title %></h1>
-            <p><%= post.description  %></p>
+            <div class="flex flex-col xs:gap-4 p-4 border-t-2 border-black">
+              <header class="flex felx-row justify-between items-center">
+                <div class="xs:text-sm flex flex-row justify-start items-center xs:gap-2">
+                  <i class="fa-solid fa-circle-user xs:text-3xl"></i>
+                  <p class="opacity-70">
+                    <%= post.user.username %>
+                  </p>
+                </div>
+                <div class="xs:text-sm opacity-70"><%= post.created_at.strftime("%d %B of %Y") %></div>
+                <% if request.fullpath.split("/")[1] == 'profile' %>
+                  <div>
+                    <button><i class="fa-solid fa-ellipsis"></i></button>
+                    <ul>
+                      <li id="card"><%= button_to 'Delete', [post], method: :delete, data: { turbo_confirm: '¿Estás seguro que quieres eliminar este post?, no será posible recuperar la información una vez eliminado' } %></li>
+                    </ul>
+                  </div>
+                <% end %>
+              </header>
+              <%= link_to "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } do %>
+                <h2 class="xs:text-xl font-bold"><%= post.title %></h2>
+              <% end %>
+              <p class="break-words line-clamp-3"><%= post.description  %></p>
+              <div class="flex flex-row justify-between items-center">
+                <p class="xs:text-xs flex gap-2">
+                  <span><%= post.likes.count %> likes</span>
+                  <span><%= post.comments.count %> comments</span>
+                </p>
+                <p class="xs:text-xs flex gap-2 items-center">
+                  <span><i class="fa-brands fa-js text-lg"></i></span>
+                  <span>12 min</span>
+                </p>
+              </div>
+            </div>
           </div>
-          <footer>
-            <%= link_to "Leer más", "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } %>
-          </footer>
         </article>
       <% end %>
     </section>
