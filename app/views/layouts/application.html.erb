@@ -14,9 +14,10 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="bg-gv-baltic-sea text-gv-cornsilk">
-    <main class="xs:mx-3 grid grid-cols-12 auto-rows-max h-screen">
+    <main class="xs:mx-3 grid grid-cols-12 auto-rows-max">
       <%= render 'shared/app_header' %>
       <%= yield %>
+      <%= render 'shared/footer' %>
     </main>
   </body>
 </html>
