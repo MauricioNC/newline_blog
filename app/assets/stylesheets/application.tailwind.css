@@ -8,6 +8,10 @@
   html{ 
     font-family: 'Archivo', sans-serif;
   }
+
+  .hide-side-menu {
+    transform: translateX(-110%);
+  }
 }
 
 @layer components {

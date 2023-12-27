@@ -7,29 +7,8 @@ export default class extends Controller {
   }
 
   toggleMenu() {
-    if (this.menuTarget.classList.contains("openmenu"))
-    {
-      this.close_dropdown()
-    }
-    else
-    {
-      this.show_dropdown()
-    }
-    
     this.menuTarget.classList.toggle("openmenu")
-  }
-
-  show_dropdown() {
-    this.menuTarget.classList.remove("overflow-hidden")
-    this.dropdownTarget.classList.remove("translate-x-64")
-  }
-
-  close_dropdown() {
-    this.dropdownTarget.classList.add("translate-x-64")
-    
-    setTimeout(() => {
-      this.menuTarget.classList.add("overflow-hidden")
-    }, 600);
+    this.dropdownTarget.classList.toggle("hide-side-menu")
   }
 
   preventReload(e) {
