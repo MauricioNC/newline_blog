@@ -1,8 +1,8 @@
-<%= link_to request.referer do %>
-  <span class="flex gap-1 justify-center items-center"><i class="fa-solid fa-arrow-left"></i>Back</span>
-<% end %>
-<%= form_with path: "/sesions/login" do |f| %>
-  <%= f.text_field :email, placeholder: "Email" %>
-  <%= f.password_field :password, placeholder: "Password" %>
-  <%= f.submit "Login" %>
-<% end %>
+<div class="col-span-12">
+  <%= render 'shared/auth_form', header_title: "Sign in" do %>
+    <%= render 'form' %>
+  <% end %>
+  <div class="mt-9">
+    <p>Don't have an account? <%= link_to "Sing up and get started!", "#", class: "text-gv-pistachio font-semibold underline underline-offset-2" %></p>
+  </div>
+</div>
