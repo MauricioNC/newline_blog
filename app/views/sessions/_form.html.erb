@@ -1,0 +1,14 @@
+<%= form_with path: "/login", class: "flex flex-col gap-4 p-4", data: { controller: "form-redirect", action: "turbo:submit-end->form-redirect#onSubmitEnd" } do |f| %>
+  <div class="email_group flex flex-col">
+    <label for="email" class="font-semibold">Email</label>
+    <%= f.text_field :email, placeholder: "example@gmail.com", class: "rounded-lg focus:ring-0 focus:border-black border-2 border-black shadow-hard text-gv-baltic-sea", data: { controller: "form", action: "focusout->form#validate", form_input_type_param: "email" } %>
+  </div>
+  <div class="password_group flex flex-col">
+    <label for="password" class="font-semibold">Password</label>
+    <%= f.password_field :password, placeholder: "Enter password", class: "rounded-lg focus:ring-0 focus:border-black border-2 border-black shadow-hard text-gv-baltic-sea", data: { controller: "form", action: "focusout->form#validate", form_input_type_param: "password" } %>
+  </div>
+  <%= f.submit "Login", class: "bg-gv-tulip-pink rounded-lg border-black border-2 shadow-hard p-2" %>
+<% end %>
+<div class="px-4 pb-4">
+  <%= link_to "Forgot password", "#", class: "text-gv-pistachio font-semibold underline underline-offset-2" %>
+</div>

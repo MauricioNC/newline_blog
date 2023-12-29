@@ -38,6 +38,9 @@ module.exports = {
         'gv-pistachio': '#8EC07C',
         'gv-bamboo': '#D65D0E',
         'gv-fire': '#AF3A03',
+        'gv-fire-engine-red': '#CC241D',
+        'gv-saffron': '#FABD2F',
+        'gv-goldenrod': '#D79921',
       },
       boxShadow: {
         'hard': '4px 6px 0 0 #000',
