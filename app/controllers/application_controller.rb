@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user
   end
 
+  def user_authenticated?
+    redirect_to root_path if current_user
+  end
+
   def current_user
     @current_user ||=
       begin
