@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-dark-medium.min.css" integrity="sha512-b12/NZky4W9Kvcnt3w34iakw9OtmrnL/TwgNexCNOEOO7Ev/FN0X6bNKy9qqYOZoJN9fU8vTb/pzjSlH4xYNbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <%= javascript_importmap_tags %>
   </head>
-  <body class="bg-gv-baltic-sea text-gv-cornsilk w-screen h-screen">
-    <div class="xs:mx-3 grid grid-cols-12 content-between h-full">
+  <body class="bg-gv-baltic-sea text-gv-cornsilk w-screen h-screen box-border">
+    <div class="xs:mx-3 grid grid-cols-12 content-start h-full">
       <%= render 'shared/app_header' %>
       <%= yield %>
       <%= render 'shared/footer' %>
