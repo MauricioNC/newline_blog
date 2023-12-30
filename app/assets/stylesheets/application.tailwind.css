@@ -5,6 +5,10 @@
 @import 'actiontext.css';
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
   html{ 
     font-family: 'Archivo', sans-serif;
   }
