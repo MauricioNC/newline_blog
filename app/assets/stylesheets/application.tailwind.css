@@ -13,6 +13,10 @@
     font-family: 'Archivo', sans-serif;
   }
 
+  html, body {
+    height: 100%;
+  }
+
   .hide-side-menu {
     transform: translateX(-110%);
   }
