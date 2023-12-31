@@ -73,3 +73,5 @@ group :test do
 end
 
 gem "sidekiq", "~> 7.2"
+
+gem "nokogiri", "~> 1.15"
