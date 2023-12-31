@@ -1,12 +1,10 @@
 <%= form_with(model: post, class: "col-span-12") do |f| %>
   <%= f.text_field :title, placeholder: "Title" %>
-  <%= f.text_area :description, placeholder: "Description" %>
   <div data-controller="previews">
     <%= f.label :banner, "Add some banner to your post" %>
     <%= f.file_field :banner,
         direct_upload: true,
         data: { previews_target: "input", action: "change->previews#preview" } %>
-
     <% if post.banner.attached? %>
       <div class="banner">
         <%= image_tag post.banner, data: { previews_target: "preview" } %>
