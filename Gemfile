@@ -75,3 +75,5 @@ end
 gem "sidekiq", "~> 7.2"
 
 gem "nokogiri", "~> 1.15"
+
+gem "redcarpet", "~> 3.6"
