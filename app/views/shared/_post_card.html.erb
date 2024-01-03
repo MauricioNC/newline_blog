@@ -29,7 +29,7 @@
       <%= link_to "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } do %>
         <h2 class="xs:text-xl font-bold"><%= post.title %></h2>
       <% end %>
-      <p class="break-words line-clamp-3"><%= extract_first_paragraph(post.content.body.to_html)  %></p>
+      <p class="break-words line-clamp-3"></p>
       <div class="flex flex-row justify-between items-center">
         <p class="xs:text-xs flex gap-2">
           <span><%= post.likes.count %> likes</span>
