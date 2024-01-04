@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'actiontext.css';
-
 @layer base {
   * {
     box-sizing: border-box;
@@ -19,6 +17,28 @@
 
   .hide-side-menu {
     transform: translateX(-110%);
+  }
+
+  .ss-main {
+    background-color: #1D2021 !important;
+    border: 2px solid black !important;
+  }
+
+  .ss-main:focus {
+    box-shadow: none !important;
+  }
+  
+  .ss-content {
+    background-color: #1D2021 !important;
+    border: 2px solid black !important;  
+  }
+  
+  .ss-option {
+    color: #FBF5D7 !important;
+  }
+
+  .ss-search input {
+    background-color: #1D2021 !important;
   }
 }
 

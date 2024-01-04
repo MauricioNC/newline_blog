@@ -18,8 +18,8 @@ export default class extends Controller {
     }
     
     if (file)
-    reader.readAsDataURL(file)
-  else
+      reader.readAsDataURL(file)
+    else
       preview.src = ""
   }
 }
