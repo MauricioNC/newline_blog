@@ -1,20 +1,30 @@
-<%= form_with(model: post, class: "col-span-12") do |f| %>
-  <%= f.text_field :title, placeholder: "Title" %>
-  <div data-controller="previews">
-    <%= f.label :banner, "Add some banner to your post" %>
-    <%= f.file_field :banner,
+<%= form_with(model: post, class: "col-span-12 flex flex-col gap-5") do |f| %>
+  <div class="form-header flex felx-row justify-between mb-5">
+    <div data-controller="previews">
+      <%= f.label :banner, class: "flex felx-col justify-center bg-gv-dark-jungle p-2 border-2 border-black rounded-lg" do %>
+        Add a great banner
+        <%= f.file_field :banner,
         direct_upload: true,
+        class: "hidden",
         data: { previews_target: "input", action: "change->previews#preview" } %>
-    <% if post.banner.attached? %>
-      <div class="banner">
-        <%= image_tag post.banner, data: { previews_target: "preview" } %>
-      </div>
-    <% else %>
-      <div class="banner">
-        <%= image_tag "", data: { previews_target: "preview" } %>
-      </div>
-    <% end %>
+        <div class="banner">
+          <% if post.banner.attached? %>
+            <%= image_tag post.banner, data: { previews_target: "preview" } %>
+          <% else %>
+            <%= image_tag "", data: { previews_target: "preview" } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
   </div>
-  <%= f.select :tag_ids, Tag.pluck(:tag, :id), {include_blank: true}, {multiple: true, data: { controller: 'slim' } } %>
-  <%= f.submit %>
+  <%= f.select :tag_ids, Tag.pluck(:tag, :id), {include_blank: false}, {multiple: true, data: { controller: 'slim' } } %>
+  <%= f.text_field :title, 
+    placeholder: "Title",
+    class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg"
+  %>
+  <%= f.text_area :body,
+    placeholder: "Write your post here...",
+    class: "bg-transparent border-0 focus:border-black focus:ring-0 rounded-lg overflow-hidden resize-none text-lg min-h-10 xs:h-[550px]"
+  %>
 <% end %>
