@@ -2,6 +2,7 @@
   <div class="col-span-12">
     <div><%= post.title %></div>
     <div><%= image_tag post.banner if post.banner.attached? %></div>
+    <div><%= markdown(post.body) %></div>
     <ul>
       <% post.tags.each do |t| %>
         <li><%= t.tag %></li>
