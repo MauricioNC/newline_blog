@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users, except: [:edit]
   resources :posts, except: [:show] do
-    resources :likes, only: %i[ create destroy ]
+    resources :likes, only: %i[create destroy]
   end
 
   root 'home#home'
