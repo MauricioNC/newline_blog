@@ -4,6 +4,8 @@ module PostsHelper
   def markdown(text)
     options = {
       no_links: false,
+      no_styles: false,
+      escape_html: true,
       hard_wrap: true,
       link_attributes: { target: "_blank" }
     }
@@ -21,7 +23,7 @@ module PostsHelper
       highlight: true,
       underline: true
     }
-    renderer = Redcarpet::Render::HTML.new
-    Redcarpet::Markdown.new(renderer, extensions).render(text).delete("<p></p>")
+    renderer = Redcarpet::Render::HTML.new(options)
+    Redcarpet::Markdown.new(renderer, extensions).render(text).delete("<p></p>").html_safe
   end
 end
