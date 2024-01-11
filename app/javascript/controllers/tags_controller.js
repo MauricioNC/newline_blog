@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { FetchRequest } from '@rails/request.js'
 
-
 // Connects to data-controller="tags"
 export default class extends Controller {
   connect() {
@@ -12,6 +11,7 @@ export default class extends Controller {
     this.tagsSelected = document.querySelector("#tags-selected")
     this.comboboxSearch = document.querySelector("#combobox-search")
     this.inputSearch = ""
+    this.closeSpan = `<span class='px-4 py-2 bg-neutral-900 rounded-tr-lg rounded-br-lg font-bold' data-controller='tags' data-action='click->tags#removeTag'>X</span>`
   }
 
   async listTags() {
@@ -22,17 +22,14 @@ export default class extends Controller {
 
     this.inputSearch = entryValue
 
-    const filterdTags = tagsList.filter((tag) => tag.includes(entryValue) ? tag : '')
+    const filteredTags = tagsList.filter((tag) => tag.includes(entryValue) ? tag : '')
 
-    if (filterdTags.length > 0) {
-      for (let i = 0; i < filterdTags.length; i++) {
-        const li = document.createElement("li")
-        li.id = filterdTags[i]
-        li.classList.add("border-b-2", "border-b-gv-baltic-sea", "p-2")
-        li.innerHTML = filterdTags[i]
-        li.dataset.controller = "tags"
-        li.dataset.action = "click->tags#appendToCombobox"
-        ul.appendChild(li)
+    if (filteredTags.length > 0) {
+      for (let i = 0; i < filteredTags.length; i++) {
+        const li = `<li id='${filteredTags[i]}' class='border-b-2 border-b-gv-baltic-sea p-2'} data-controller='tags' data-action='click->tags#appendToCombobox'>
+          ${filteredTags[i]}
+        </li>`
+        ul.insertAdjacentHTML("beforeend", li)
       }
       div.id = "tags-autocomplete"
       div.classList.add("bg-gv-dark-jungle", "p-2", "mt-2")
@@ -72,13 +69,16 @@ export default class extends Controller {
   }
 
   appendToCombobox() {
-    const li = document.createElement("li")
-    li.innerHTML = this.element.textContent
-
-    li.id = this.element.textContent.toLowerCase().split(' ').join('_')
-    li.classList.add("tag-item")
-
-    this.tagsSelected.appendChild(li)
+    const li = `<li id='${this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-4 items-center'>
+      ${this.element.textContent}
+      ${this.closeSpan}
+    </li>`
+    this.tagsSelected.insertAdjacentHTML("beforeend", li)
+    this.comboboxSearch.focus()
+  }
+  
+  removeTag() {
+    this.element.parentElement.remove()
     this.comboboxSearch.focus()
   }
 }

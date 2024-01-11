@@ -19,7 +19,7 @@
     <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
   </div>
   <div class="combobox-tags">
-    <ul id="tags-selected" class="flex felx-row gap-3 flex-shrink"></ul>
+    <ul id="tags-selected" class="flex felx-row gap-3 flex-wrap shrink-0"></ul>
     <ul id="combobox">
       <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:border-0 focus:ring-0 border-0 w-full focus:bg-gv-dark-jungle rounded-lg" data-controller="tags" data-action="input->tags#listTags"></li>
     </ul>
