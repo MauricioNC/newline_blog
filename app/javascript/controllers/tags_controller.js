@@ -90,6 +90,7 @@ export default class extends Controller {
       ${this.closeSpan}
     </li>`
     this.tagsSelected.insertAdjacentHTML("beforeend", li)
+    this.comboboxSearch.value = ""
     this.comboboxSearch.focus()
   }
 
