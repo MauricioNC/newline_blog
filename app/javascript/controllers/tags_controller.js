@@ -58,7 +58,7 @@ export default class extends Controller {
   }
 
   setElementAttributes(element, params) {
-    element.id = params?.id
+    params?.id ? element.id = params.id : ''
     params?.class.forEach((classItem) => {
       element.classList.add(classItem)
     })
@@ -118,5 +118,9 @@ export default class extends Controller {
       this.element.classList.add("bg-transparent")
       this.element.classList.remove("bg-gv-dark-jungle", "border-2", "border-gv-fire")
     }
+  }
+
+  closeTagsList() {
+    document.getElementById("tags-autocomplete") ? document.getElementById("tags-autocomplete").remove() : ''
   }
 }
