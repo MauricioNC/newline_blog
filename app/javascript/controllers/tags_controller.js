@@ -85,8 +85,8 @@ export default class extends Controller {
   }
 
   appendToCombobox(value) {
-    const li = `<li id='${value ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-4 items-center'>
-      ${value ? value : this.element.textContent}
+    const li = `<li id='${typeof value === "string" ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-4 items-center'>
+      ${typeof value === "string" ? value : this.element.textContent}
       ${this.closeSpan}
     </li>`
     this.tagsSelected.insertAdjacentHTML("beforeend", li)
