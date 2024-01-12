@@ -21,10 +21,9 @@
   <div class="combobox-tags">
     <ul id="tags-selected" class="flex felx-row gap-3 flex-wrap shrink-0"></ul>
     <ul id="combobox">
-      <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:border-0 focus:ring-0 border-0 w-full focus:bg-gv-dark-jungle rounded-lg" data-controller="tags" data-action="input->tags#listTags"></li>
+      <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:border-0 focus:ring-0 border-0 w-full focus:bg-gv-dark-jungle rounded-lg" data-controller="tags" data-action="input->tags#listTags keydown.enter->tags#registerTagToCombobox"></li>
     </ul>
   </div>
-  <%# f.select :tag_ids, Tag.pluck(:tag, :id), {include_blank: false}, {multiple: true, data: { controller: 'slim' } } %>
   <%= f.text_field :title, 
     placeholder: "Title",
     class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg"
