@@ -58,6 +58,11 @@
     @apply w-full h-1 block rounded-lg bg-slate-950 absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2 transition-all duration-500;
   }
 
+  .without-ring:focus {
+    outline: none;
+    background-color: #458588;
+  }
+
   .top-line {
     transform: translate(-50%, -13px);
   }
@@ -77,3 +82,5 @@
     width: 0;
   }
 }
+
+

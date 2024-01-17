@@ -54,7 +54,7 @@ export default class extends Controller {
 
   creatListOfTagsElement() {
     listOfTags = document.createElement("ul")
-    this.setElementAttributes(listOfTags, {class: ["list-of-tags"] })
+    this.setElementAttributes(listOfTags, {class: ["list-of-tags"], tabindex: "-1" })
   }
 
   setElementAttributes(element, params) {
@@ -62,16 +62,15 @@ export default class extends Controller {
     params?.class.forEach((classItem) => {
       element.classList.add(classItem)
     })
+    params?.tabindex ? element.tabIndex = params.tabindex : ''
   }
 
   appendTagsToListOfTags(filteredTags) {
     for (let i = 0; i < filteredTags.length; i++) {
-      const li = `<li id='${filteredTags[i]}' class='border-b-2 border-b-gv-baltic-sea p-2'} data-controller='tags' data-action='click->tags#appendToCombobox'>
-        ${filteredTags[i]}
-      </li>`
+      const li = `<li id='${filteredTags[i]}' class='border-b-2 border-b-gv-baltic-sea p-2 without-ring'} data-controller='tags' data-action='click->tags#appendToCombobox keydown.enter->tags#registerTagToCombobox' tabindex='${0}'>${filteredTags[i]}</li>`
       listOfTags.insertAdjacentHTML("beforeend", li)
     }
-    
+
     tagsAutoComplete.appendChild(listOfTags)
   }
 
@@ -92,6 +91,7 @@ export default class extends Controller {
     this.tagsSelected.insertAdjacentHTML("beforeend", li)
     this.comboboxSearch.value = ""
     this.comboboxSearch.focus()
+    this.closeTagsList()
   }
 
   registerTagToCombobox(event) {
