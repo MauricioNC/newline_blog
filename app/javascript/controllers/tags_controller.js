@@ -14,7 +14,13 @@ export default class extends Controller {
     this.comboboxTag = document.querySelector(".combobox-tags")
     this.tagsSelected = document.querySelector("#tags-selected")
     this.comboboxSearch = document.querySelector("#combobox-search") 
-    this.closeSpan = `<span class='px-4 py-2 bg-neutral-900 rounded-tr-lg rounded-br-lg font-bold' data-controller='tags' data-action='click->tags#removeTagItem'>X</span>`  
+    this.closeSpan = `<span class='px-4 py-2 bg-neutral-900 rounded-tr-lg rounded-br-lg font-bold' data-controller='tags' data-action='click->tags#removeTagItem'>X</span>`
+
+    document.addEventListener("click", (event)=>{
+      if (event.target !== this.comboboxSearch) {
+        this.closeTagsList()
+      }
+    })
   }
 
   async listTags() {
@@ -108,19 +114,11 @@ export default class extends Controller {
     tag.remove()
   }
 
-  trackFocus() {
-    if (this.element.value !== "")
-    {
-      this.element.classList.remove("bg-transparent")
-      this.element.classList.add("bg-gv-dark-jungle", "border-2", "border-gv-fire")
-    }
-    else {
-      this.element.classList.add("bg-transparent")
-      this.element.classList.remove("bg-gv-dark-jungle", "border-2", "border-gv-fire")
-    }
-  }
-
   closeTagsList() {
     document.getElementById("tags-autocomplete") ? document.getElementById("tags-autocomplete").remove() : ''
+  }
+
+  disconnect() {
+    document.getElementById("app").removeEventListener("click", this.closeTagsList())
   }
 }
