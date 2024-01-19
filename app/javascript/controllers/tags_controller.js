@@ -73,18 +73,21 @@ export default class extends Controller {
 
   appendTagsToListOfTags(filteredTags) {
     for (let i = 0; i < filteredTags.length; i++) {
-      const li = `<li id='${filteredTags[i]}' class='border-b-2 border-b-gv-baltic-sea p-2 without-ring'} data-controller='tags' data-action='click->tags#appendToCombobox keydown.enter->tags#registerTagToCombobox' tabindex='${0}'>${filteredTags[i]}</li>`
+      const li = `<li id='${filteredTags[i]}' class='border-b-2 border-b-gv-baltic-sea p-2 without-ring'} data-controller='tags' data-action='click->tags#appendToCombobox keydown.enter->tags#registerTagToCombobox' tabindex='${0}'>
+        ${filteredTags[i]}
+      </li>`
       listOfTags.insertAdjacentHTML("beforeend", li)
     }
 
     tagsAutoComplete.appendChild(listOfTags)
   }
-
+  
   appendOrReplaceTagsAutoComplete() {
     // The #tags-autocomplete div is replace with the new tags as the user types
     if (document.querySelector("#tags-autocomplete")) {
       this.comboboxTag.replaceChild(tagsAutoComplete, document.querySelector("#tags-autocomplete"))
-    } else {
+    } 
+    else {
       this.comboboxTag.appendChild(tagsAutoComplete)
     }
   }
@@ -116,9 +119,5 @@ export default class extends Controller {
 
   closeTagsList() {
     document.getElementById("tags-autocomplete") ? document.getElementById("tags-autocomplete").remove() : ''
-  }
-
-  disconnect() {
-    document.getElementById("app").removeEventListener("click", this.closeTagsList())
   }
 }
