@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users, except: [:edit]
   resources :posts, except: [:show] do
-    resources :likes, only: %i[ create destroy ]
+    resources :likes, only: %i[create destroy]
   end
 
   root 'home#home'
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  get '/tags', to: 'tags#index'
 
   # get '/account', to: 'users#edit'
   post '/search', to: 'home#search'

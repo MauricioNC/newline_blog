@@ -18,10 +18,15 @@
     </div>
     <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
   </div>
-  <%= f.select :tag_ids, Tag.pluck(:tag, :id), {include_blank: false}, {multiple: true, data: { controller: 'slim' } } %>
+  <%= render 'select_for_tags', f: f %>
   <%= f.text_field :title, 
     placeholder: "Title",
-    class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg"
+    class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg focus:bg-gv-dark-jungle",
+    data: {
+      controller: "tags",
+      action: "focus->tags#closeTagsList"
+    },
+    autofocus: true
   %>
   <%= f.text_area :body,
     placeholder: "Write your post here...",

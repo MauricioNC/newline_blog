@@ -18,7 +18,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @current_user.posts.new(posts_params)
+    params[:post][:tag_ids] = find_or_create_tags
+    @post = @current_user.posts.new(posts_params.except(:tags))
 
     if @post.save
       redirect_to root_path, notice: "Post was created successfully"
@@ -52,5 +53,20 @@ class PostsController < ApplicationController
 
   def posts_params
     params.require(:post).permit(:title, :body, :banner, tag_ids: [])
+  end
+
+  def find_or_create_tags
+    new_tags_list = []
+    posts_params[:tag_ids].each_with_index do |tag_name_or_id, idx|
+      next if tag_name_or_id.blank?
+
+      if tag_name_or_id.to_i.to_s == tag_name_or_id
+        new_tags_list.push(tag_name_or_id)
+      else
+        tag_id = Tag.find_or_create_by(tag: tag_name_or_id.strip).id.to_s
+        new_tags_list.push(tag_id)
+      end
+    end
+    new_tags_list
   end
 end
