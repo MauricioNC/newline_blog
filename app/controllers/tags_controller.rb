@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   def index
-    render json: { tags: Tag.all.map { |t| t.tag.downcase }, status: :ok }
+    tags = Tag.select(:id, :tag).map { |t| { id: t.id, tag: t.tag } }
+    render json: tags, status: :ok
   end
 end
