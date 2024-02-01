@@ -1,4 +1,4 @@
-<%= form_with(model: post, class: "col-span-12 flex flex-col gap-5") do |f| %>
+<%= form_with(model: post, class: "col-span-12 flex flex-col gap-2") do |f| %>
   <div class="form-header flex felx-row justify-between mb-5">
     <div data-controller="previews">
       <%= f.label :banner, class: "flex felx-col justify-center bg-gv-dark-jungle p-2 border-2 border-black rounded-lg" do %>
@@ -19,7 +19,7 @@
     <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
   </div>
   <%= render 'select_for_tags', f: f %>
-  <%= f.text_field :title, 
+  <%= f.text_field :title,
     placeholder: "Title",
     class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg focus:bg-gv-dark-jungle",
     data: {
@@ -30,6 +30,6 @@
   %>
   <%= f.text_area :body,
     placeholder: "Write your post here...",
-    class: "bg-transparent border-0 focus:border-black focus:ring-0 rounded-lg overflow-hidden resize-none text-lg min-h-10 xs:h-[550px]"
+    class: "bg-transparent border-0 focus:border-black focus:ring-0 rounded-lg focus:bg-gv-dark-jungle overflow-hidden resize-none text-lg min-h-10 xs:h-[550px]"
   %>
 <% end %>
