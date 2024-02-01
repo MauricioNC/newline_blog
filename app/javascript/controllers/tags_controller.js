@@ -11,6 +11,7 @@ export default class extends Controller {
     this.method = "GET" // GET method for AJAX request
     this.securityToken = document.head.querySelector("meta[name=csrf-token]")?.content // CSFR token
     
+    this.selectField = document.getElementById("post_tag_ids")
     this.comboboxTag = document.querySelector(".combobox-tags")
     this.tagsSelected = document.querySelector("#tags-selected")
     this.comboboxSearch = document.querySelector("#combobox-search") 
@@ -21,14 +22,17 @@ export default class extends Controller {
         this.closeTagsList()
       }
     })
+    this.tagsList = undefined
   }
 
   async listTags() {
     this.createAutoCopmpleteElement()
     this.creatListOfTagsElement()
-    
-    const tagsList = await this.getTagsLits()
-    const filteredTags = tagsList.filter((tag) => tag.includes(this.element.value) ? tag : '')
+
+    if (!this.tagsList)
+      this.tagsList = await this.getTagsLits()
+
+    const filteredTags = this.tagsList.filter((item) => item.tag.toLowerCase().includes(this.element.value) ? item : '')
     
     if (filteredTags.length > 0) {
       this.appendTagsToListOfTags(filteredTags)
@@ -50,7 +54,7 @@ export default class extends Controller {
     })
     const response = await request.perform()
     if (!response.ok) {  return [] }
-    return JSON.parse(await response.text).tags
+    return JSON.parse(await response.text)
   }
 
   createAutoCopmpleteElement() {
@@ -73,8 +77,15 @@ export default class extends Controller {
 
   appendTagsToListOfTags(filteredTags) {
     for (let i = 0; i < filteredTags.length; i++) {
-      const li = `<li id='${filteredTags[i]}' class='border-b-2 border-b-gv-baltic-sea p-2 without-ring'} data-controller='tags' data-action='click->tags#appendToCombobox keydown.enter->tags#registerTagToCombobox' tabindex='${0}'>
-        ${filteredTags[i]}
+      const li = `<li id='${filteredTags[i].tag}' class='border-b-2 border-b-gv-baltic-sea without-ring'}>
+        <a class='without-ring p-2 block w-full'
+          data-controller='tags'
+          data-action='click->tags#appendToCombobox keydown.enter->tags#registerTagToCombobox keydown.enter->tags#appendToCombobox'
+          data-tags-id-param='${filteredTags[i].id}'
+          data-tags-tag-param='${filteredTags[i].tag}'
+          tabindex='${0}'>
+          ${filteredTags[i].tag}
+        </a>  
       </li>`
       listOfTags.insertAdjacentHTML("beforeend", li)
     }
@@ -92,7 +103,8 @@ export default class extends Controller {
     }
   }
 
-  appendToCombobox(value) {
+  appendToCombobox(event, value) {
+    event.preventDefault()
     const li = `<li id='${typeof value === "string" ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-4 items-center'>
       ${typeof value === "string" ? value : this.element.textContent}
       ${this.closeSpan}
@@ -101,11 +113,22 @@ export default class extends Controller {
     this.comboboxSearch.value = ""
     this.comboboxSearch.focus()
     this.closeTagsList()
+    this.addOptionForSelect(event.params.id, event.params.tag)
   }
 
   registerTagToCombobox(event) {
     event.preventDefault()
-    this.appendToCombobox(this.element.value)
+    if (!document.getElementById("tags-autocomplete"))
+    {
+      event.params.id = ''
+      event.params.tag = this.element.value
+      this.appendToCombobox(event, this.element.value)
+    }
+  }
+
+  addOptionForSelect(id, tag) {
+    const option = `<option value='${id || tag}' selected>${tag}</option>`
+    this.selectField.insertAdjacentHTML('beforeend', option)
   }
   
   removeTagItem() {
