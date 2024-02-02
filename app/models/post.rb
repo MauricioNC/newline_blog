@@ -7,4 +7,12 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  after_destroy :destroy_attached_banner
+
+  protected
+
+  def destroy_attached_banner
+    self.banner.purge if self.banner.attached?
+  end
 end
