@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :authenticate!
   before_action :set_post
 
   def create
@@ -14,7 +15,7 @@ class LikesController < ApplicationController
 
   def destroy
     @post.likes.where(id: params[:id]).delete_all
-    
+
     respond_to do |format|
       format.html {  }
       format.turbo_stream {  }

@@ -10,12 +10,10 @@
     </ul>
   </div>
 </div>
-<div class="col-span-12 mt-8" data-controller="likes">
-  <%= turbo_frame_tag "like_btn" do %>
-    <% unless like %>
-      <%= render 'shared/like_btn', post: post %>
-    <% else %>
-      <%= render 'shared/unlike_btn', post: post, like: like %>
-    <% end %>
+<div class="col-span-12 mt-8">
+  <% if current_user %>
+    <%= render 'like_btn_with_turbo', like: like, post: post %>
+  <% else %>
+    <%= render 'like_btn_without_turbo', like: like, post: post %>
   <% end %>
 </div>
