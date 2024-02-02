@@ -1,8 +1,14 @@
-<%= form_with(model: post, class: "col-span-12 flex flex-col gap-2") do |f| %>
-  <div class="form-header flex felx-row justify-between mb-5">
+<%= form_with(model: post, class: "col-span-12 flex flex-col gap-2 mb-5") do |f| %>
+  <div class="form-header flex items-center mb-5">
     <div data-controller="previews">
-      <%= f.label :banner, class: "flex felx-col justify-center bg-gv-dark-jungle p-2 border-2 border-black rounded-lg" do %>
-        Add a great banner
+      <div class="hidden flex-row mb-4 gap-1" data-previews-target="footerLegend">
+        <span class="text-xs">Click the image to change banner or </span>
+        <button class="text-gv-fire-engine-red text-xs" data-action="click->previews#removeBanner" data-previews-target="removeBanner">remove banner</button>
+      </div>
+      <%= f.label :banner, 
+          class: "bg-gv-dark-jungle p-2 border-2 border-black rounded-lg block text-center",
+          data: { previews_target: "labelElement" } do %>
+        <span data-previews-target="labelText">Add a great banner</span>
         <%= f.file_field :banner,
         direct_upload: true,
         class: "hidden",
@@ -11,16 +17,16 @@
           <% if post.banner.attached? %>
             <%= image_tag post.banner, data: { previews_target: "preview" } %>
           <% else %>
-            <%= image_tag "", data: { previews_target: "preview" } %>
+            <%= image_tag "",  data: { previews_target: "preview" } %>
           <% end %>
         </div>
       <% end %>
     </div>
-    <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
   </div>
   <%= render 'select_for_tags', f: f %>
   <%= f.text_field :title,
     placeholder: "Title",
+    id: "titleInput", 
     class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg focus:bg-gv-dark-jungle",
     data: {
       controller: "tags",
@@ -32,4 +38,5 @@
     placeholder: "Write your post here...",
     class: "bg-transparent border-0 focus:border-black focus:ring-0 rounded-lg focus:bg-gv-dark-jungle overflow-hidden resize-none text-lg min-h-10 xs:h-[550px]"
   %>
+  <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
 <% end %>
