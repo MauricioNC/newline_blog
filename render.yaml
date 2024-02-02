@@ -1,7 +1,7 @@
 databases:
-  - name: newline-blog-production-db
-    databaseName: newline_blog_production
-    user: newline_blog_production_user
+  - name: newline-blog-db
+    databaseName: newline_blog_db
+    user: newline
     plan: free
 
 services:
