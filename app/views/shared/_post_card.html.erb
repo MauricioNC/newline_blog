@@ -31,14 +31,14 @@
       <% end %>
       <%# sanitize markdown(post.body).html_safe %>
       <p class="break-words line-clamp-3"><%= markdown(post.body) %></p>
-      <div class="flex flex-row justify-between items-center">
-        <p class="xs:text-xs flex gap-2">
-          <span><%= post.likes.count %> likes</span>
-          <span><%= post.comments.count %> comments</span>
-        </p>
+      <div class="flex flex-row justify-between shrink-0 flex-wrap items-center">
         <p class="xs:text-xs flex gap-2 items-center">
-          <span><i class="fa-brands fa-js text-lg"></i></span>
-          <span>12 min</span>
+          <i class="fa-solid fa-tag text-gv-pistachio"></i>
+          <% post.tags.take(3).each do |t| %>
+            <%= link_to "#" do %>
+              <span class="text-gv-pistachio"><%= t.tag %></span>
+            <% end %>
+          <% end %>
         </p>
       </div>
     </div>
