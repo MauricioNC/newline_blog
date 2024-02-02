@@ -1,23 +1,42 @@
-<%= form_with(model: post, class: "col-span-12") do |f| %>
-  <%= f.text_field :title, placeholder: "Title" %>
-  <%= f.text_area :description, placeholder: "Description" %>
-  <div data-controller="previews">
-    <%= f.label :banner, "Add some banner to your post" %>
-    <%= f.file_field :banner,
+<%= form_with(model: post, class: "col-span-12 flex flex-col gap-2 mb-5") do |f| %>
+  <div class="form-header flex items-center mb-5">
+    <div data-controller="previews">
+      <div class="hidden flex-row mb-4 gap-1" data-previews-target="footerLegend">
+        <span class="text-xs">Click the image to change banner or </span>
+        <button class="text-gv-fire-engine-red text-xs" data-action="click->previews#removeBanner" data-previews-target="removeBanner">remove banner</button>
+      </div>
+      <%= f.label :banner, 
+          class: "bg-gv-dark-jungle p-2 border-2 border-black rounded-lg block text-center",
+          data: { previews_target: "labelElement" } do %>
+        <span data-previews-target="labelText">Add a great banner</span>
+        <%= f.file_field :banner,
         direct_upload: true,
+        class: "hidden",
         data: { previews_target: "input", action: "change->previews#preview" } %>
-
-    <% if post.banner.attached? %>
-      <div class="banner">
-        <%= image_tag post.banner, data: { previews_target: "preview" } %>
-      </div>
-    <% else %>
-      <div class="banner">
-        <%= image_tag "", data: { previews_target: "preview" } %>
-      </div>
-    <% end %>
+        <div class="banner">
+          <% if post.banner.attached? %>
+            <%= image_tag post.banner, data: { previews_target: "preview" } %>
+          <% else %>
+            <%= image_tag "", data: { previews_target: "preview" } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <%= f.rich_text_area :content %>
-  <%= f.select :tag_ids, Tag.pluck(:tag, :id), {include_blank: true}, {multiple: true, data: { controller: 'slim' } } %>
-  <%= f.submit %>
+  <%= render 'select_for_tags', f: f %>
+  <%= f.text_field :title,
+    placeholder: "Title",
+    id: "titleInput", 
+    class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg focus:bg-gv-dark-jungle",
+    data: {
+      controller: "tags",
+      action: "focus->tags#closeTagsList"
+    },
+    autofocus: true
+  %>
+  <%= f.text_area :body,
+    placeholder: "Write your post here...",
+    class: "bg-transparent border-0 focus:border-black focus:ring-0 rounded-lg focus:bg-gv-dark-jungle overflow-hidden resize-none text-lg min-h-10 xs:h-[550px]"
+  %>
+  <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
 <% end %>

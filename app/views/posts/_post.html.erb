@@ -1,21 +1,17 @@
-<div class="relative col-span-12 h-screen">
+<div class="col-span-12">
   <div class="col-span-12">
     <div><%= post.title %></div>
     <div><%= image_tag post.banner if post.banner.attached? %></div>
-    <div><%= post.content %></div>
-    <ul>
-      <% post.tags.each do |t| %>
-        <li><%= t.tag %></li>
-      <% end%>
+    <div><%= markdown(post.body) %></div>
+    <ul class="flex flex-row mt-5 gap-3 flex-wrap shrink-0">
+      <%= render 'shared/tags', tags: @post.tags %>
     </ul>
   </div>
 </div>
-<div class="col-span-12 mt-8" data-controller="likes">
-  <%= turbo_frame_tag "like_btn" do %>
-    <% unless like %>
-      <%= render 'shared/like_btn', post: post %>
-    <% else %>
-      <%= render 'shared/unlike_btn', post: post, like: like %>
-    <% end %>
+<div class="col-span-12 mt-8">
+  <% if current_user %>
+    <%= render 'like_btn_with_turbo', like: like, post: post %>
+  <% else %>
+    <%= render 'like_btn_without_turbo', like: like, post: post %>
   <% end %>
 </div>

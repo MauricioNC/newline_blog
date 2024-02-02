@@ -6,21 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    
     <!-- Slim-selec styles -->
     <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet"/>
-    
     <!-- Highlightjs styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/gruvbox-dark-medium.min.css" integrity="sha512-b12/NZky4W9Kvcnt3w34iakw9OtmrnL/TwgNexCNOEOO7Ev/FN0X6bNKy9qqYOZoJN9fU8vTb/pzjSlH4xYNbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/onedark.min.css" integrity="sha512-rMDp1YyPJ6wXwTSjhgWbEKOobIWcZCE9pbbdBy46I+RBatSS0HR2NFYn0Fzbb7dqO9sbf8ie0hvnV4C7SKHBcg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
-    <main class="mx-3 grid grid-cols-12 auto-rows-max h-screen">
+  <body class="bg-gv-baltic-sea text-gv-cornsilk">
+    <div class="xs:mx-3 grid grid-cols-12 content-start" id="app">
       <%= render 'shared/app_header' %>
       <%= yield %>
-    </main>
+    </div>
   </body>
 </html>

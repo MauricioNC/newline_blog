@@ -1,3 +1,5 @@
-<% tags.each do |tag| %>
-  <%= button_to tag.tag, "", class: "border-2 border-black rounded-lg p-1" %>
+<% if tags.present? %>
+  <% tags.each do |tag| %>
+    <%= button_to tag.tag, "", class: "border-2 border-black rounded-lg p-1 bg-gv-smalt-blue text-center xs:px-2 xs:text-sm px-4 shadow-hard" %>
+  <% end %>
 <% end %>
