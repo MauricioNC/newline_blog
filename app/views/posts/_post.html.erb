@@ -3,10 +3,8 @@
     <div><%= post.title %></div>
     <div><%= image_tag post.banner if post.banner.attached? %></div>
     <div><%= markdown(post.body) %></div>
-    <ul>
-      <% post.tags.each do |t| %>
-        <li><%= t.tag %></li>
-      <% end%>
+    <ul class="flex flex-row mt-5 gap-3 flex-wrap shrink-0">
+      <%= render 'shared/tags', tags: @post.tags %>
     </ul>
   </div>
 </div>
