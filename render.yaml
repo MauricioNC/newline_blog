@@ -1,0 +1,12 @@
+databases:
+  - name: https://newline-blog.onrender.com
+    databaseName: https://newline-blog.onrender.com
+    user: https://newline-blog.onrender.com
+    plan: free
+
+services:
+  - type: web
+    name: https://newline-blog.onrender.com
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
