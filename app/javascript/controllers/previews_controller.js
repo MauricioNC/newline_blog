@@ -6,6 +6,11 @@ export default class extends Controller {
 
   connect() {
     this.toggledElements = false
+    
+    if (this.previewTarget.src !== "" && window.location.pathname !== "/posts/new") {
+      this.labelTextTarget.innerText = ""
+      this.toggleStyles()
+    }
   }
   
   preview() {
