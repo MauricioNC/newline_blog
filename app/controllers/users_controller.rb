@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        UserMailer.with(user: @user).email_confirmation.deliver_later
         format.html {}
         format.turbo_stream {}
       else
