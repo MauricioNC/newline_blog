@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        UserMailer.with(user: @user).email_confirmation.deliver_later
+        token = generate_token @user
+        UserMailer.with(user: @user, token: token, url: account_validate_path).email_confirmation.deliver_later
         format.html {}
         format.turbo_stream {}
       else
@@ -37,6 +38,10 @@ class UsersController < ApplicationController
   end
 
   def delete
+  end
+
+  def generate_token(user)
+    JwtTokenService.encode({ user_id: user.id, email: user.email })
   end
 
   private

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
+  get '/account/validate', to: 'account#validate', as: 'account_validate'
+
   get '/tags', to: 'tags#index'
 
   # get '/account', to: 'users#edit'
