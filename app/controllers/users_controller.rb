@@ -18,20 +18,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     respond_to do |format|
-      if @user.save
-        token = generate_token @user
-        UserMailer.with(user: @user, token: token).email_confirmation.deliver_later
-        format.html {}
-        format.turbo_stream {}
-      else
-        format.html { render :new }
-      end
+      format.html { render :new } unless @user.save
+
+      token = generate_token @user
+      UserMailer.with(user: @user, token: token).email_confirmation.deliver_later
+      format.html {}
+      format.turbo_stream {}
     end
   end
 
   def update
     if @user.update(user_params)
-     redirect_to profile_settings_path, notice: "Your information was updated successfully"
+      redirect_to profile_settings_path, notice: "Your information was updated successfully"
     else
       render :edit, notice: "Something went wrong, try again", status: :unprocessable_entity
     end
