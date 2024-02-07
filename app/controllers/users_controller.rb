@@ -38,10 +38,6 @@ class UsersController < ApplicationController
   def delete
   end
 
-  def generate_token(user)
-    JwtTokenService.encode({ user_id: user.id, email: user.email })
-  end
-
   private
 
   def set_user
