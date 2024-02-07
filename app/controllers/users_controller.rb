@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         token = generate_token @user
-        UserMailer.with(user: @user, token: token, url: account_validate_path).email_confirmation.deliver_later
+        UserMailer.with(user: @user, token: token).email_confirmation.deliver_later
         format.html {}
         format.turbo_stream {}
       else
