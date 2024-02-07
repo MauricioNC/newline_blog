@@ -1,5 +1,6 @@
-<h2>Hey <%= @user.username %>!!</h2>
-<div>
+<div style="box-sizing:border-box;display:block;margin:0 auto;max-width:600px;padding:30px 20px;color:black;font-size:16px">
+  <h2>Hey <%= @user.username %>!!</h2>
   <p>Usa este link para poder iniciar sesión de forma segura: </p>
-  <p><%= link_to "Iniciar sesión", account_confirmation_url(token: @token) %></p>
+  <%= link_to "Iniciar sesión", account_confirmation_url(token: @token), target: "_blank", style: "display:inline-block;background-color:#076678;text-align:center;padding:6px 8px;border-radius:9px;width:50%;text-decoration:none;color:#FBF5D7;font-size:16px;" %>
+  <p><strong>NOTA:</strong> Este link solo estará activo por 15 minutos</p>
 </div>

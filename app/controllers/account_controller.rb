@@ -4,11 +4,15 @@ class AccountController < ApplicationController
 
     token = params[:token]
     @decoded = JwtTokenService.decode(token)
+
+    raise JWT::DecodeError, @decoded if @decoded.instance_of?(String)
+
     session[:user_id] = User.find(@decoded[:user_id]).id
     redirect_to root_path
   rescue ActiveRecord::RecordNotFound => e
-    render login_path, notice: e.message, status: :unauthorized
+    e.message = "User not found"
+    redirect_to login_path, notice: e.message
   rescue JWT::DecodeError => e
-    render login_path, notice: e.message, status: :unauthorized
+    redirect_to login_path, notice: e.message
   end
 end

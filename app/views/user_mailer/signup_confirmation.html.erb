@@ -1,3 +1,6 @@
-<h3>Bienvenido <%= @user.username %>, gracias por unirte a nosotros!</h3>
-<p>Para poder tener acceso a <mark>newline blog</mark> tienes que confirmar tu email haciendo click en el enlace de abajo.</p>
-<p><%= link_to "Haz click aquí para confirmar tu cuenta", account_confirmation_url(token: @token) %></p>
+<div style="box-sizing:border-box;display:block;margin:0 auto;max-width:600px;padding:30px 20px;color:black;font-size:16px">
+  <h2>Bienvenido <%= @user.username %>, gracias por unirte a nosotros!</h2>
+  <p>Para poder tener acceso a <mark>newline blog</mark> tienes que confirmar tu email haciendo click en el enlace de abajo.</p>
+  <%= link_to "Haz click aquí para confirmar tu cuenta", account_confirmation_url(token: @token), target: "_blank", style: "display:inline-block;background-color:#076678;text-align:center;padding:6px 8px;border-radius:9px;width:50%;text-decoration:none;color:#FBF5D7;font-size:16px;" %>
+  <p><strong>NOTA:</strong> Este link solo estará activo por 15 minutos</p>
+</div>
