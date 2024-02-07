@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     token = generate_token @user
     UserMailer.with(user: @user, token: token).signin_confirmation.deliver_later
     respond_to do |format|
@@ -22,6 +23,9 @@ class SessionsController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by_email(params[:email])
+    @user = User.where(email: params[:email])
+    raise ActiveRecord::RecordNotFound, "Email #{params[:email]} doesn't exist" if @user.empty?
+  rescue ActiveRecord::RecordNotFound => e
+    redirect_to login_path, notice: e.message
   end
 end
