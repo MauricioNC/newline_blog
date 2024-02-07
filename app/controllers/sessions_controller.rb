@@ -23,8 +23,8 @@ class SessionsController < ApplicationController
   private
 
   def set_user
-    @user = User.where(email: params[:email])
-    raise ActiveRecord::RecordNotFound, "Email #{params[:email]} doesn't exist" if @user.empty?
+    @user = User.where(email: params[:email]).first
+    raise ActiveRecord::RecordNotFound, "Email #{params[:email]} doesn't exist" if @user.nil?
   rescue ActiveRecord::RecordNotFound => e
     redirect_to login_path, notice: e.message
   end
