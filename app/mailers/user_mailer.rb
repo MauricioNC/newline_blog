@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
-  def email_confirmation
+  def signup_confirmation
     @user = params[:user]
     @token = params[:token]
 
-    mail to: @user.email, subject: "Email confirmation"
+    mail to: @user.email, subject: "Signup confirmation"
   end
 end

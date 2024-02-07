@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       format.html { render :new } unless @user.save
 
       token = generate_token @user
-      UserMailer.with(user: @user, token: token).email_confirmation.deliver_later
+      UserMailer.with(user: @user, token: token).signup_confirmation.deliver_later
       format.html {}
       format.turbo_stream {}
     end
