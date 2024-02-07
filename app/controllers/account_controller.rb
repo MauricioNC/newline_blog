@@ -1,5 +1,5 @@
 class AccountController < ApplicationController
-  def validate
+  def confirmation
     redirect_to login_path, status: :unauthorized if params[:token].nil?
 
     token = params[:token]

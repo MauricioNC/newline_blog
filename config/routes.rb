@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
-  get '/account/validate', to: 'account#validate', as: 'account_validate'
+  get '/account/confirmation', to: 'account#confirmation', as: 'account_confirmation'
 
   get '/tags', to: 'tags#index'
 
