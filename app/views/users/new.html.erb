@@ -4,7 +4,10 @@
       <%= render 'form', user: @user %>
     <% end %>
     <div class="mt-9">
-      <p>Already have an account? <%= link_to "Login", login_path, class: "text-gv-pistachio font-semibold underline underline-offset-2" %></p>
+      <p>Already have an account? <%= link_to "Login", login_path,
+                                      class: "text-gv-pistachio font-semibold underline underline-offset-2",
+                                      data: { turbo_frame: "_top" } %>
+      </p>
     </div>
   <% end %>
 </div>

@@ -1,0 +1,5 @@
+<h2>Hey <%= @user.username %>!!</h2>
+<div>
+  <p>Usa este link para poder iniciar sesión de forma segura: </p>
+  <p><%= link_to "Iniciar sesión", account_confirmation_url(token: @token) %></p>
+</div>
