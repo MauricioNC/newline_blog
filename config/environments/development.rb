@@ -5,11 +5,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:         Rails.application.credentials.dig(:address),
-    port:            Rails.application.credentials.dig(:port),
-    domain:          'https://newline-blog.onrender.com/',
-    user_name:       Rails.application.credentials.dig(:user_name),
-    password:        Rails.application.credentials.dig(:password),
+    address:         'smtp.gmail.com',
+    port:            587,
+    domain:          'localhost',
+    user_name:       'newline.dev1@gmail.com',
+    password:        'cnkj tvjf nibw rjke',
     authentication:  'plain',
     enable_starttls: true,
     open_timeout:    5,
@@ -53,7 +53,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'http://localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
