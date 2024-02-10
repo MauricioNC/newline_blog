@@ -5,11 +5,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:         'smtp.gmail.com',
-    port:            587,
-    domain:          'example.com',
-    user_name:       'newline.dev1@gmail.com',
-    password:        'cnkj tvjf nibw rjke',
+    address:         Rails.application.credentials.dig(:address),
+    port:            Rails.application.credentials.dig(:port),
+    domain:          'https://newline-blog.onrender.com/',
+    user_name:       Rails.application.credentials.dig(:user_name),
+    password:        Rails.application.credentials.dig(:password),
     authentication:  'plain',
     enable_starttls: true,
     open_timeout:    5,
@@ -46,7 +46,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :amazon
+  config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true

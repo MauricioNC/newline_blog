@@ -3,6 +3,18 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:         Rails.application.credentials.dig(:address),
+    port:            Rails.application.credentials.dig(:port),
+    domain:          'https://newline-blog.onrender.com/',
+    user_name:       Rails.application.credentials.dig(:user_name),
+    password:        Rails.application.credentials.dig(:password),
+    authentication:  'plain',
+    enable_starttls: true,
+    open_timeout:    5,
+    read_timeout:    5 }
+
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
@@ -38,7 +50,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
