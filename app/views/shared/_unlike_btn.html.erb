@@ -1,3 +1,0 @@
-<%= button_to post_like_path(post.id, like.id), method: :delete, data: { remote: true, likes_target: "like", action: "click->likes#unlike" } do %>
-  <i class="fa-solid fa-thumbs-up like_icon text-green-700"></i><%= post.likes.count %>
-<% end %>
