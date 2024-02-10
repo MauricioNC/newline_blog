@@ -1,8 +1,13 @@
 <div class="col-span-12">
-  <%= render 'shared/auth_form', header_title: "Sign in" do %>
-    <%= render 'form' %>
+  <%= turbo_frame_tag "signin_form" do %>
+    <%= render 'shared/auth_form', header_title: "Sign in" do %>
+      <%= render 'form' %>
+    <% end %>
+    <div class="mt-9">
+      <p>Don't have an account? <%= link_to "Sing up and get started!", signup_path,
+                                    class: "text-gv-pistachio font-semibold underline underline-offset-2",
+                                    data: { turbo_frame: "_top" } %>
+      </p>
+    </div>
   <% end %>
-  <div class="mt-9">
-    <p>Don't have an account? <%= link_to "Sing up and get started!", "#", class: "text-gv-pistachio font-semibold underline underline-offset-2" %></p>
-  </div>
 </div>

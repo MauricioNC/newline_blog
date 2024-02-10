@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def show
@@ -13,9 +14,22 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def create
+    @user = User.new(user_params)
+
+    respond_to do |format|
+      format.html { render :new } unless @user.save
+
+      token = generate_token @user
+      UserMailer.with(user: @user, token: token).signup_confirmation.deliver_later
+      format.html {}
+      format.turbo_stream {}
+    end
+  end
+
   def update
     if @user.update(user_params)
-     redirect_to profile_settings_path, notice: "Your information was updated successfully"
+      redirect_to profile_settings_path, notice: "Your information was updated successfully"
     else
       render :edit, notice: "Something went wrong, try again", status: :unprocessable_entity
     end
@@ -35,6 +49,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:fullname, :username, :email, :password, :biography)
+    params.require(:user).permit(:fullname, :username, :email)
   end
 end
