@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate!, only: [ :new, :create ]
-  before_action :set_user, only: [ :show, :update ]
-  before_action :set_post, only: [ :edit, :update ]
+  before_action :set_user, only: [ :show, :update, :like, :unlike ]
+  before_action :set_post, only: [ :edit, :update, :like, :unlike ]
 
   def show
     @post = @user.posts.find_by_title(params[:post_title])
@@ -39,6 +39,16 @@ class PostsController < ApplicationController
   def destroy
     DeletePostJob.perform_async(params[:id])
     render turbo_stream: turbo_stream.remove("content_article_card_#{params[:id]}")
+  end
+
+  def like
+    @like = current_user.likes.create(post: @post)
+    render partial: "posts/post", locals: { post: @post }
+  end
+
+  def unlike
+    current_user.likes.find_by(post_id: @post.id).destroy
+    render partial: "posts/post", locals: { post: @post }
   end
 
   private
