@@ -1,17 +1,30 @@
-<div class="col-span-12">
-  <div class="col-span-12">
-    <div><%= post.title %></div>
-    <div><%= image_tag post.banner if post.banner.attached? %></div>
-    <div><%= markdown(post.body) %></div>
-    <ul class="flex flex-row mt-5 gap-3 flex-wrap shrink-0">
-      <%= render 'shared/tags', tags: @post.tags %>
-    </ul>
+<%= turbo_frame_tag dom_id(post), class: "col-span-12" do %>
+  <div>
+    <div class="col-span-12">
+      <div><%= post.title %></div>
+      <div><%= image_tag post.banner if post.banner.attached? %></div>
+      <div><%= markdown(post.body) %></div>
+      <ul class="flex flex-row mt-5 gap-3 flex-wrap shrink-0">
+        <%= render 'shared/tags', tags: @post.tags %>
+      </ul>
+    </div>
   </div>
-</div>
-<div class="col-span-12 mt-8">
-  <% if current_user %>
-    <%= render 'like_btn_with_turbo', like: like, post: post %>
-  <% else %>
-    <%= render 'like_btn_without_turbo', like: like, post: post %>
-  <% end %>
-</div>
+  <div class="col-span-12 mt-8 flex items-center gap-2">
+    <% if user_authenticated? %>
+      <% if current_user && post.likes.exists?(user_id: current_user.id) %>
+        <%= button_to unlike_post_path(post.id), method: :delete do %>
+          <i class="fa-solid fa-thumbs-up like_icon text-green-700"></i>
+        <% end %>
+      <% else %>
+        <%= button_to like_post_path(post.id), class: "liked", method: :post do %>
+          <i class="fa-solid fa-thumbs-up like_icon"></i>
+        <% end %>
+      <% end %>
+    <% else%>
+      <%= link_to login_path, data: { turbo_frame: "_top" } do %>
+        <i class="fa-solid fa-thumbs-up like_icon"></i>
+      <% end %>
+    <% end%>
+    <%= post.likes.count %>
+  </div>
+<% end %>
