@@ -23,7 +23,7 @@
       <% end %>
     </div>
   </div>
-  <%= render 'select_for_tags', f: f %>
+  <%= render 'select_for_tags', f: f, post: post%>
   <%= f.text_field :title,
     placeholder: "Title",
     id: "titleInput", 
