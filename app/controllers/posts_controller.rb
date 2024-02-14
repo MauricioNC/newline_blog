@@ -51,6 +51,12 @@ class PostsController < ApplicationController
     render partial: "posts/post", locals: { post: @post }
   end
 
+  def posts_by_tag
+    request.referer if params[:tag].nil?
+    @query = params[:tag]
+    @posts = Post.joins(:tags).where('lower(tags.tag) LIKE ?', "%#{@query.downcase}%").uniq
+  end
+
   private
 
   def set_user

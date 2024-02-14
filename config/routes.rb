@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/account/confirmation', to: 'account#confirmation', as: 'account_confirmation'
 
   get '/tags', to: 'tags#index'
+  get '/tag/:tag', to: 'posts#posts_by_tag', as: 'posts_by_tag'
 
   # get '/account', to: 'users#edit'
   get '/search', to: 'home#search'
