@@ -1,11 +1,14 @@
-<%= turbo_frame_tag 'content', class: 'col-span-12' do %>
+<%= turbo_frame_tag 'posts', class: 'col-span-12' do %>
+  <% if action_name == "search" %>
+    <h1 class="text-2xl">Results for <strong class="underline underline-offset-4 decoration-gv-fire-engine-red"><%= query %></strong></h1>
+  <% end %>
   <% unless posts.empty? %>
     <section class="cards col-span-12">
       <% posts.each do |post| %>
-        <%= render 'shared/post_card', post: post %>
+        <%= render 'shared/post', post: post %>
       <% end %>
     </section>
   <% else %>
-    <p>Nothing to show yet</p>
+    <p class="mt-5 text-center text-gv-oasis-400">No posts founded with this name or tag</p>
   <% end %>
 <% end %>

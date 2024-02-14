@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/tags', to: 'tags#index'
 
   # get '/account', to: 'users#edit'
-  post '/search', to: 'home#search'
+  get '/search', to: 'home#search'
   get 'posts/:username/:post_title', to: 'posts#show', as: 'show_post'
 
   # Profile paths
