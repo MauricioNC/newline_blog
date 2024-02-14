@@ -1,1 +1,12 @@
-<%= render 'shared/cards', posts: @posts, query: @query %>
+<article class="col-span-12">
+  <section class="mb-16">
+    <div class="h-full flex flex-col justify-center">
+      <%= render 'shared/search_form' %>
+    </div>
+  </section>
+  <% if action_name == "search" || action_name == "posts_by_tag" %>
+    <h1 class="text-2xl">All posts with <strong class="underline underline-offset-4 decoration-gv-fire-engine-red"><%= @query %></strong> tag</h1>
+  <% end %>
+  <%= render 'shared/cards', posts: @posts %>
+</article>
+<%= turbo_frame_tag :pagination, src: search_path(format: :turbo_stream, q: @query, page: @pagy.next), loading: :lazy %>
