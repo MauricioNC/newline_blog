@@ -1,15 +1,8 @@
-<header class="col-span-12 flex flex-row justify-between items-center mt-3 z-10 mb-10">
+<header class="top-bar px-3 lg:px-40 flex flex-row justify-between items-center z-10 mb-10 py-2 border-b-2 border-transparent" data-controller="menu">
   <%= link_to "Logo", root_path, class: 'text-2xl font-semibold' %>
   <% if current_user %>
-    <div class="burger-menu w-9 h-9 cursor-pointer flex flex-col" data-controller="menu" data-menu-target="menu" data-action="click->menu#toggleMenu">
-      <div class="h-full relative">
-        <span class="top-line burguer-menu-lines bg-gv-tulip-pink"></span>
-        <span class="mid-line burguer-menu-lines bg-gv-tulip-pink"></span>
-        <span class="bottom-line burguer-menu-lines bg-gv-tulip-pink"></span>
-      </div>
-      <%= render partial: 'shared/drop_down' %>
-    </div>
+    <%= render partial: 'shared/navbar' %>
   <% else %>
-    <%= link_to "Login", login_path, class: 'px-4 py-2 bg-gv-red-orange rounded-lg border-2 border-black shadow-hard font-bold' %>
+    <%= link_to "Login", login_path, class: 'px-4 py-2 bg-gv-pistachio rounded-lg border-2 border-black shadow-hard font-bold text-gv-dark-jungle' %>
   <% end %>
 </header>

@@ -33,6 +33,7 @@ module.exports = {
         'gv-smalt-blue': '#458588',
         'gv-morning-blue': '#83A598',
         'gv-tulip-pink': '#B16286',
+        'gv-dull-pink': '#D3869B',
         'gv-grey-green': '#689D6A',
         'gv-dark-aqua': '#076678',
         'gv-pistachio': '#8EC07C',

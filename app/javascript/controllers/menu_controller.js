@@ -4,11 +4,23 @@ export default class extends Controller {
   static targets = ["menu", "dropdown", "profile", "settings"]
 
   connect() {
+    const topBar = this.element
+    const topBarOffset = topBar.offsetHeight
+
+    window.onscroll = function() {
+      console.log(window.scrollY)
+      if (window.scrollY > topBarOffset-10) {
+        topBar.classList.remove("border-transparent")
+        topBar.classList.add("w-full", "fixed", "bg-gv-dark-jungle", "border-black")
+      } else if(window.scrollY < topBarOffset-20) {
+        topBar.classList.add("border-transparent")
+        topBar.classList.remove("w-full", "fixed", "bg-gv-dark-jungle", "border-black")
+      }
+  }
   }
 
-  toggleMenu() {
-    this.menuTarget.classList.toggle("openmenu")
-    this.dropdownTarget.classList.toggle("hide-side-menu")
+  toggleDropdown() {
+    this.dropdownTarget.classList.toggle("hidden")
   }
 
   preventReload(e) {
@@ -21,6 +33,5 @@ export default class extends Controller {
         e.preventDefault()
       }
     }
-
   }
 }
