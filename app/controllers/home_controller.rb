@@ -18,4 +18,8 @@ class HomeController < ApplicationController
       format.turbo_stream
     end
   end
+
+  def search_form
+    render partial: "shared/search_form" if turbo_frame_request?
+  end
 end

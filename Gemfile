@@ -89,3 +89,5 @@ gem "rails_refactor", "~> 1.4"
 gem 'faker'
 
 gem "pagy", "~> 6.4"
+
+gem 'device_detector'

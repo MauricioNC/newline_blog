@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   # get '/account', to: 'users#edit'
   get '/search', to: 'home#search'
+  get '/search-form', to: 'home#search_form'
   get 'posts/:username/:post_title', to: 'posts#show', as: 'show_post'
 
   # Profile paths

@@ -1,8 +1,17 @@
-<header class="top-bar px-3 lg:px-40 flex flex-row justify-between items-center z-10 mb-10 py-2 border-b-2 border-transparent" data-controller="menu">
-  <%= link_to "Logo", root_path, class: 'text-2xl font-semibold' %>
-  <% if current_user %>
-    <%= render partial: 'shared/navbar' %>
-  <% else %>
-    <%= link_to "Login", login_path, class: 'px-4 py-2 bg-gv-pistachio rounded-lg border-2 border-black shadow-hard font-bold text-gv-dark-jungle' %>
+<header class="top-bar px-3 lg:px-40 py-4 w-full z-10 mb-10 border-b-2 border-transparent" data-controller="menu">
+  <%= turbo_frame_tag "search-bar", class: "flex flex-row justify-between items-center gap-4" do %>
+    <%= link_to "Logo", root_path, class: 'text-2xl font-semibold', data: { turbo_frame: "_top" } %>
+    <% if agent_mobile? %>
+      <%= link_to search_form_path do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+    <% else%>
+      <%= render 'shared/search_form' %>
+    <% end %>
+    <% if current_user %>
+      <%= render partial: 'shared/navbar' %>
+    <% else %>
+      <%= link_to "Login", login_path, class: 'px-4 py-2 bg-gv-pistachio rounded-lg border-2 border-black shadow-hard font-bold text-gv-dark-jungle', data: { turbo_frame: "_top" } %>
+    <% end %>
   <% end %>
 </header>

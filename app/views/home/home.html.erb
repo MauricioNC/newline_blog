@@ -1,4 +1,3 @@
-<%= render 'shared/banner' %>
 <div class="col-span-12 mt-8">
   <%= render 'shared/cards',  posts: @posts %>
   <%= turbo_frame_tag :pagination, src: root_path(format: :turbo_stream), loading: :lazy %>
