@@ -1,4 +1,12 @@
-<div class="col-span-12 mt-8">
+<div class="col-span-12 md:col-span-12 lg:col-start-1 lg:col-span-8  xl:col-start-1 xl:col-span-8 mt-8">
   <%= render 'shared/cards',  posts: @posts %>
-  <%= turbo_frame_tag :pagination, src: root_path(format: :turbo_stream), loading: :lazy %>
 </div>
+<div class="hidden h-auto lg:block lg:col-start-9 lg:col-span-4  xl:col-start-10 xl:col-span-3 mt-8">
+  <div class="flex justify-start gap-2.5 flex-wrap">
+    <%= render 'shared/tags', tags: @tags %>
+  </div>
+  <div>
+    <h3>Popular posts</h3>
+  </div>
+</div>
+<%= turbo_frame_tag :pagination, src: root_path(format: :turbo_stream), loading: :lazy %>

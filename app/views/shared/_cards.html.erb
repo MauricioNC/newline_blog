@@ -1,6 +1,6 @@
-<section class="cards col-span-12">
+<div class="cards">
   <% unless posts.empty? %>
-    <%= turbo_frame_tag 'posts', class: 'col-span-12' do %>
+    <%= turbo_frame_tag 'posts', class: 'flex flex-col md:justify-start md:flex-row lg:flex-col gap-4 md:flex-wrap' do %>
       <% posts.each do |post| %>
         <%= render 'shared/post', post: post %>
       <% end %>
@@ -8,4 +8,4 @@
   <% else %>
     <p class="mt-5 text-center text-gv-oasis-400">No posts founded with this name or tag</p>
   <% end %>
-</section>
+</div>

@@ -10,6 +10,7 @@ class Post < ApplicationRecord
 
   after_destroy :destroy_attached_banner
 
+
   protected
 
   def destroy_attached_banner

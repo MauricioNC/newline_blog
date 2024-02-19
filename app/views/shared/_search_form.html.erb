@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "search-bar", class: "flex flex-col justify-center w-[620px] max-w-[620px] xs:absolute lg:relative" do %>
+<%= turbo_frame_tag "search-bar", class: "hidden md:flex flex-col justify-center md:w-full lg:w-[520px] xl:w-[620px] xs:absolute md:relative" do %>
   <% if agent_mobile? %>
     <%= link_to :back, data: { turbo_frame: "_top" } do %>
       <i class="fa-solid fa-arrow-left"></i>

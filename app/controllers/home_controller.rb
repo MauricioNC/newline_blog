@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def home
     @tags = Tag.limit(8).order("RANDOM()")
-    @pagy, @posts = pagy(Post.order(created_at: :desc), items: 5)
+    @pagy, @posts = pagy(Post.order(created_at: :desc), items: 10)
 
     respond_to do |format|
       format.html

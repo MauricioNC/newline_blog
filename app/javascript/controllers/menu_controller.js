@@ -8,10 +8,11 @@ export default class extends Controller {
     const topBarOffset = topBar.offsetHeight
 
     window.onscroll = function() {
-      if (window.scrollY > topBarOffset-10) {
+      if (window.scrollY >= topBarOffset) {
         topBar.classList.remove("border-transparent")
         topBar.classList.add("w-full", "fixed", "bg-gv-dark-jungle", "border-black")
-      } else if(window.scrollY < topBarOffset-20) {
+      }
+      else {
         topBar.classList.add("border-transparent")
         topBar.classList.remove("w-full", "fixed", "bg-gv-dark-jungle", "border-black")
       }
