@@ -1,12 +1,14 @@
 <%= turbo_frame_tag dom_id(post), class: "col-span-12" do %>
   <div>
     <div class="col-span-12">
-      <div><%= post.title %></div>
+      <h1><%= post.title %></h1>
       <div><%= image_tag post.banner if post.banner.attached? %></div>
-      <div><%= markdown(post.body) %></div>
-      <ul class="flex flex-row mt-5 gap-3 flex-wrap shrink-0">
-        <%= render 'shared/tags', tags: @post.tags %>
-      </ul>
+      <%= markdown(post.body) %>
+      <% unless post.tags.empty?%>
+        <ul class="flex flex-row mt-5 gap-3 flex-wrap shrink-0">
+          <%= render 'shared/tags', tags: @post.tags %>
+        </ul>
+      <% end %>
     </div>
   </div>
   <div class="col-span-12 mt-8 flex items-center gap-2">
