@@ -1,4 +1,4 @@
-<%= form_with(model: post, class: "col-span-12 flex flex-col gap-2 mb-5") do |f| %>
+<%= form_with(model: post, class: "col-start-2 col-span-10 lg:col-start-1 lg:col-span-8 flex flex-col gap-2 mb-5 rounded-md") do |f| %>
   <div class="form-header flex items-center mb-5">
     <div data-controller="previews">
       <div class="hidden flex-row mb-4 gap-1" data-previews-target="footerLegend">
@@ -13,7 +13,7 @@
         direct_upload: true,
         class: "hidden",
         data: { previews_target: "input", action: "change->previews#preview" } %>
-        <div class="banner">
+        <div class="banner max-w-[720px]">
           <% if post.banner.attached? %>
             <%= image_tag post.banner, data: { previews_target: "preview" } %>
           <% else %>
@@ -23,11 +23,11 @@
       <% end %>
     </div>
   </div>
-  <%= render 'select_for_tags', f: f %>
+  <%= render 'select_for_tags', f: f, post: post%>
   <%= f.text_field :title,
     placeholder: "Title",
     id: "titleInput", 
-    class: "bg-transparent w-full text-2xl border-0 focus:border-0 focus:ring-0 rounded-lg focus:bg-gv-dark-jungle",
+    class: "bg-transparent w-full text-2xl border-0 focus:ring-0 focus:bg-gv-dark-jungle",
     data: {
       controller: "tags",
       action: "focus->tags#closeTagsList"
@@ -36,7 +36,10 @@
   %>
   <%= f.text_area :body,
     placeholder: "Write your post here...",
-    class: "bg-transparent border-0 focus:border-black focus:ring-0 rounded-lg focus:bg-gv-dark-jungle overflow-hidden resize-none text-lg min-h-10 xs:h-[550px]"
+    class: "bg-transparent border-0 focus:ring-0 overflow-hidden resize-none text-lg min-h-10 xs:h-[550px] focus:bg-gv-dark-jungle"
   %>
   <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
 <% end %>
+<div class="hidden lg:block col-start-9 col-span-4 bg-gv-dark-jungle rounded-md">
+  <h3>Markdown sintax</h3>
+</div>

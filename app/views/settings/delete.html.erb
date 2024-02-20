@@ -1,13 +1,13 @@
 <%= render 'account_nav' %>
-<div class="col-span-12 mt-10">
-  <p class="my-5">
-    <span class="text-red-600 font-semibold">¡Advertencia!</span> Al eliminar tu cuenta, no podrás recuperar tu información. Todos tus posts, posts que te hayan gustado y comentarios serán eliminados.
+<div class="col-span-12 mt-8 md:col-start-3 md:col-span-6">
+  <p class="mb-5">
+    <span class="text-gv-fire-engine-red font-semibold">¡Advertencia!</span> Al eliminar tu cuenta, no podrás recuperar tu información. Todos tus posts, posts que te hayan gustado y comentarios serán eliminados.
   </p>
   <%= form_with(url: delete_account_path, method: :delete, data: { turbo_confirm: "¿Estás seguro que deseas eliminar tu cuenta?, No será posible reestablecer la información?" }) do |f| %>
     <div class="flex flex-col items-start gap-2">
-      <%= f.label :password, "Password" %>
-      <%= f.password_field :password, class: "w-full rounded" %>
+      <%= f.label :password, "Enter your password to confirm your account deletion", class: "font-semibold"%>
+      <%= f.password_field :password,  placeholder: "password", class: "w-full rounded-lg focus:ring-0 focus:border-black border-2 border-black shadow-hard text-gv-baltic-sea" %>
     </div>
-    <%= f.submit "Delete account", class: "bg-red-500 p-2 text-white rounded-lg mt-5" %>
+    <%= f.submit "Delete account", class: "bg-gv-fire-engine-red p-2 text-white rounded-lg mt-5" %>
   <% end %>
 </div>

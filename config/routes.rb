@@ -18,9 +18,11 @@ Rails.application.routes.draw do
   get '/account/confirmation', to: 'account#confirmation', as: 'account_confirmation'
 
   get '/tags', to: 'tags#index'
+  get '/tag/:tag', to: 'posts#posts_by_tag', as: 'posts_by_tag'
 
   # get '/account', to: 'users#edit'
-  post '/search', to: 'home#search'
+  get '/search', to: 'home#search'
+  get '/search-form', to: 'home#search_form'
   get 'posts/:username/:post_title', to: 'posts#show', as: 'show_post'
 
   # Profile paths

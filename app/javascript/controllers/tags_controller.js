@@ -15,7 +15,7 @@ export default class extends Controller {
     this.comboboxTag = document.querySelector(".combobox-tags")
     this.tagsSelected = document.querySelector("#tags-selected")
     this.comboboxSearch = document.querySelector("#combobox-search") 
-    this.closeSpan = `<span class='px-4 py-2 bg-neutral-900 rounded-tr-lg rounded-br-lg font-bold' data-controller='tags' data-action='click->tags#removeTagItem'>X</span>`
+    this.closeSpan = `<span class='px-2 py-1 bg-gv-smalt-blue rounded-tr-lg rounded-br-lg font-bold hover:cursor-default' data-controller='tags' data-action='click->tags#removeTagItem'>X</span>`
 
     document.addEventListener("click", (event)=>{
       if (event.target !== this.comboboxSearch) {
@@ -105,7 +105,7 @@ export default class extends Controller {
 
   appendToCombobox(event, value) {
     event.preventDefault()
-    const li = `<li id='${typeof value === "string" ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-4 items-center'>
+    const li = `<li id='${typeof value === "string" ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-2 items-center border-2 border-black shadow-hard'>
       ${typeof value === "string" ? value : this.element.textContent}
       ${this.closeSpan}
     </li>`
@@ -132,8 +132,8 @@ export default class extends Controller {
   }
   
   removeTagItem() {
+    document.querySelector(`.${this.element.parentElement.classList[0]}`).remove()
     this.element.parentElement.remove()
-    this.comboboxSearch.focus()
   }
 
   removeDOMElement(tag) {
