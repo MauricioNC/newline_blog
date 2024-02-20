@@ -1,6 +1,13 @@
-<article id="content_article_card_<%= post.id %>" class="flex flex-col xs:gap-5 bg-gv-dark-jungle border-2 border-black shadow-hard rounded-lg overflow-hidden md:w-full">
-  <div class="flex flex-col md:flex-row lg:flex-row rounded-lg">
-    <div class="flex flex-col xs:gap-4 p-4 lg:p-8 w-full">
+<article id="content_article_card_<%= post.id %>" class="flex flex-col xs:gap-5 mt-4 bg-gv-dark-jungle border-2 border-black shadow-hard rounded-lg overflow-hidden">
+  <div class="flex flex-col">
+    <!-- BANNER CONTAINER -->
+    <% if post.banner.present? %>
+      <figure class="w-full h-40 overflow-hidden">
+        <%= image_tag post.banner, alt: "Image banner", class: "w-full h-full object-cover" %>
+      </figure>
+    <% end %>
+    <div class="flex flex-col xs:gap-4 p-4 border-t-2 border-black">
+      <!-- HEADER CONTAINER -->
       <header class="flex felx-row justify-between items-center">
         <div class="xs:text-sm flex flex-row justify-start items-center xs:gap-2">
           <i class="fa-solid fa-circle-user xs:text-3xl"></i>
@@ -18,10 +25,12 @@
           </div>
         <% end %>
       </header>
+      <!-- CARD CONTAINER -->
       <%= link_to "/posts/#{post.user.username}/#{post.title}", data: { turbo_frame: "_top" } do %>
         <h2 class="xs:text-xl font-bold"><%= post.title %></h2>
       <% end %>
-      <div class="break-words line-clamp-3"><%= extract_first_paragraph(markdown(post.body)) %></div>
+      <%# sanitize markdown(post.body).html_safe %>
+      <p class="break-words line-clamp-3"><%= markdown(post.body) %></p>
       <div class="flex flex-row justify-between shrink-0 flex-wrap items-center">
         <p class="xs:text-xs flex gap-2 items-center">
           <i class="fa-solid fa-tag text-gv-pistachio"></i>

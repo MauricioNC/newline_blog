@@ -1,25 +1,16 @@
 class HomeController < ApplicationController
   def home
+    @posts = Post.all
     @tags = Tag.limit(8).order("RANDOM()")
-    @pagy, @posts = pagy(Post.order(created_at: :desc), items: 10)
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
   end
 
   def search
     @query = params[:q]
-    @pagy, @posts = pagy(Post.left_joins(:tags).where('lower(tags.tag) LIKE ? OR lower(posts.title) LIKE ?', "%#{@query.downcase}%", "%#{@query.downcase}%").distinct.order(created_at: :desc), items: 5)
+    @posts = Post.all.map{ |post| post if post.tags.select { |t| t === params[:q] } }
 
     respond_to do |format|
-      format.html
+      format.html { redirect_to root_path }
       format.turbo_stream
     end
-  end
-
-  def search_form
-    render partial: "shared/search_form" if turbo_frame_request?
   end
 end

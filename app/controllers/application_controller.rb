@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include Pagy::Backend
   helper_method :current_user, :user_authenticated?
 
   def authenticate!

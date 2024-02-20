@@ -14,8 +14,8 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="bg-gv-baltic-sea text-gv-cornsilk">
-    <%= render 'shared/app_header' %>
-    <div class="mx-3 md:mx-8 lg:mx-14 xl:mx-64 grid grid-cols-12 content-start gap-4" id="app">
+    <div class="xs:mx-3 grid grid-cols-12 content-start" id="app">
+      <%= render 'shared/app_header' %>
       <%= yield %>
     </div>
   </body>
