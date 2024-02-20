@@ -1,4 +1,4 @@
-<%= form_with(model: post, class: "col-span-12 flex flex-col gap-2 mb-5") do |f| %>
+<%= form_with(model: post, class: "col-start-1 col-span-8 flex flex-col gap-2 mb-5") do |f| %>
   <div class="form-header flex items-center mb-5">
     <div data-controller="previews">
       <div class="hidden flex-row mb-4 gap-1" data-previews-target="footerLegend">
@@ -13,7 +13,7 @@
         direct_upload: true,
         class: "hidden",
         data: { previews_target: "input", action: "change->previews#preview" } %>
-        <div class="banner">
+        <div class="banner max-w-[720px]">
           <% if post.banner.attached? %>
             <%= image_tag post.banner, data: { previews_target: "preview" } %>
           <% else %>
@@ -40,3 +40,6 @@
   %>
   <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
 <% end %>
+<div class="col-start-10 col-span-4">
+  <h3>Markdown sintax</h3>
+</div>

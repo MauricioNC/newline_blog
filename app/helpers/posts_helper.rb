@@ -24,6 +24,6 @@ module PostsHelper
       underline: true
     }
     renderer = Redcarpet::Render::HTML.new(options)
-    Redcarpet::Markdown.new(renderer, extensions).render(text).delete("<p></p>").html_safe
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 end
