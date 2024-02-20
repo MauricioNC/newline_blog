@@ -51,17 +51,6 @@ class PostsController < ApplicationController
     render partial: "posts/post", locals: { post: @post }
   end
 
-  def posts_by_tag
-    request.referer if params[:tag].nil?
-    @query = params[:tag]
-    @pagy, @posts = pagy(Post.joins(:tags).where('lower(tags.tag) LIKE ?', "%#{@query.downcase}%").distinct.order(created_at: :desc), items: 5)
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
-  end
-
   private
 
   def set_user

@@ -1,0 +1,4 @@
+<% if posts  %>
+  <h1>Results for <strong><%= query if query %></strong></h1>
+  <% render 'shared/cards', locals: { posts: @posts } %>
+<% end %>

@@ -1,7 +1,10 @@
 <section class="banner col-span-12 h-bannerH">
   <div class="banner_body h-full flex flex-col justify-center">
     <h1 class="text-2xl text-center text-balance font-bold">Blog y noticias de programación y tecnología</h1>
-    <%= render 'shared/search_form' %>
+    <%= form_with url: search_path, class: "relative flex flex-col justify-center mt-10"  do |f| %>
+      <%= f.text_field :q, placeholder: "Busca un blog o una noticia", class: "w-full bg-gv-dark-jungle border-2 border-black rounded-lg placeholder:text-gv-oasis-400 text-gv-oasis focus:ring-0 focus:border-black" %>
+      <%= f.submit "Buscar", class: "absolute right-0 bg-zinc-900 h-full px-4 border-2 border-black border-l-0 rounded-tr-lg rounded-br-lg" %>
+    <% end %>
     <div class="banner_tags flex justify-center align gap-2.5 shrink-0 flex-wrap mt-11">
       <%= render 'shared/tags', tags: @tags %>
     </div>
