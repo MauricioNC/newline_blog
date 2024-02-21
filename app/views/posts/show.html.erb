@@ -1,5 +1,13 @@
 <%= render @post %>
-<div class="col-span-12 mt-8">
-  <h2>Mas contenido como este</h2>
-  <%= render "shared/cards", posts: @posts %>
+<div class="col-start-2 col-span-10 mt-8  md:col-start-3 md:col-span-8 xl:col-start-2 xl:col-span-10 mb-20">
+  <% unless @posts.empty? %>
+    <h3 class="mb-6">Mas contenido como este</h3>
+    <%= turbo_frame_tag 'posts', class: 'related-content flex flex-col gap-6 md:gap-3 lg:justify-between lg:items-start lg:flex-row lg:flex-wrap' do %>
+      <% @posts.each do |post| %>
+        <%= render 'shared/post', post: post %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="my-10 text-center text-gv-oasis-400">There are not posts yet</p>
+  <% end %>
 </div>

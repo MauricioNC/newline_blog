@@ -32,7 +32,12 @@
     @apply w-full text-left flex flex-row gap-2 items-center;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  .read-post h1,
+  .read-post h2,
+  .read-post h3,
+  .read-post h4,
+  .read-post h5,
+  .read-post h6 {
     @apply text-balance mt-11 mb-4;
   }
 
@@ -43,20 +48,24 @@
   h5 { @apply text-base; }
   h6 { @apply text-sm; }
 
-  p, pre {
+  .read-post p, pre {
     @apply mb-5;
   }
 
-  p:has(img) {
+  .read-post p:has(img) {
     @apply flex justify-center items-center;
   }
 
-  li {
+  .read-post li {
     @apply list-disc ml-7;
   }
 
-  code {
+  .read-post code {
     @apply border-2 border-black shadow-hard rounded-md;
+  }
+
+  .related-content article {
+    @apply lg:basis-[48.9%] min-h-[254px];
   }
 }
 

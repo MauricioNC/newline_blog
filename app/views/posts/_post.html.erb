@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(post), class: "col-span-12 md:col-start-2 md:col-span-7" do %>
+<%= turbo_frame_tag dom_id(post), class: "read-post col-start-2 col-span-10 md:col-start-3 md:col-span-8 xl:col-start-2 xl:col-span-7" do %>
   <div>
     <div class="col-span-12">
       <h1><%= post.title %></h1>
@@ -11,22 +11,24 @@
       <% end %>
     </div>
   </div>
-  <div class="col-span-12 mt-8 flex items-center gap-2">
-    <% if user_authenticated? %>
-      <% if current_user && post.likes.exists?(user_id: current_user.id) %>
-        <%= button_to unlike_post_path(post.id), method: :delete do %>
-          <i class="fa-solid fa-thumbs-up like_icon text-green-700"></i>
+  <div class="col-span-12 mt-8">
+    <%= turbo_frame_tag dom_id(post, "like"), class: "flex items-center gap-2" do %>
+      <% if user_authenticated? %>
+        <% if current_user && post.likes.exists?(user_id: current_user.id) %>
+          <%= button_to unlike_post_path(post.id), method: :delete do %>
+            <i class="fa-solid fa-thumbs-up like_icon text-gv-grey-green"></i>
+          <% end %>
+        <% else %>
+          <%= button_to like_post_path(post.id), class: "liked", method: :post do %>
+            <i class="fa-solid fa-thumbs-up like_icon"></i>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= button_to like_post_path(post.id), class: "liked", method: :post do %>
+      <% else%>
+        <%= link_to login_path, data: { turbo_frame: "_top" } do %>
           <i class="fa-solid fa-thumbs-up like_icon"></i>
         <% end %>
-      <% end %>
-    <% else%>
-      <%= link_to login_path, data: { turbo_frame: "_top" } do %>
-        <i class="fa-solid fa-thumbs-up like_icon"></i>
-      <% end %>
-    <% end%>
-    <%= post.likes.count %>
+      <% end%>
+      <%= post.likes.count %>
+    <% end %>
   </div>
 <% end %>

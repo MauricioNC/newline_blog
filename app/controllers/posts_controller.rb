@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def show
     @post = @user.posts.find_by_title(params[:post_title])
     @tags = Tag.limit(5).order("RANDOM()")
-    @posts = Post.limit(6).order("RANDOM()")
+    @posts = Post.limit(6).where.not(id: @post.id)
     @like = @post.likes.where(post_id: @post.id).first
   end
 
