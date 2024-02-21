@@ -85,3 +85,7 @@ gem "aws-sdk-s3", "~> 1.143"
 gem "jwt", "~> 2.7"
 
 gem "rails_refactor", "~> 1.4"
+
+gem 'faker'
+
+gem "pagy", "~> 6.4"
