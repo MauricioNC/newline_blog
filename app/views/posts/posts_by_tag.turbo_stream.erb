@@ -7,6 +7,6 @@
   <% if @pagy.next.present? %>
     <%= turbo_frame_tag :pagination, 
                         loading: :lazy,
-                        src: search_path(format: :turbo_stream, q: @query, page: @pagy.next) %>
+                        src: posts_by_tag_path(format: :turbo_stream, q: @query, page: @pagy.next) %>
   <% end %>
 <% end %>

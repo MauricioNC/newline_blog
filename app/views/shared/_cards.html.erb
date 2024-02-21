@@ -1,11 +1,11 @@
-<%= turbo_frame_tag 'content', class: 'col-span-12' do %>
+<section class="cards col-span-12">
   <% unless posts.empty? %>
-    <section class="cards col-span-12">
+    <%= turbo_frame_tag 'posts', class: 'col-span-12' do %>
       <% posts.each do |post| %>
-        <%= render 'shared/post_card', post: post %>
+        <%= render 'shared/post', post: post %>
       <% end %>
-    </section>
+    <% end %>
   <% else %>
-    <p>Nothing to show yet</p>
+    <p class="mt-5 text-center text-gv-oasis-400">No posts founded with this name or tag</p>
   <% end %>
-<% end %>
+</section>
