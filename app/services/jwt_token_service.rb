@@ -5,11 +5,11 @@ class JwtTokenService
 
   def self.encode(payload, exp = 1.minutes.from_now)
     payload[:exp] = exp.to_i
-    JWT.encode(payload, SECRET_KEY)
+    JWT.encode(payload, SECRET_KEY, 'none')
   end
 
   def self.decode(token)
-    decoded = JWT.decode(token, SECRET_KEY)[0]
+    decoded = JWT.decode(token, SECRET_KEY, false)[0]
     HashWithIndifferentAccess.new(decoded)
   rescue JWT::DecodeError => e
     e.message
