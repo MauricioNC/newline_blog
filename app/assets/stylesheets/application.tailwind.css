@@ -47,6 +47,10 @@
     @apply mb-5;
   }
 
+  p:has(img) {
+    @apply flex justify-center items-center;
+  }
+
   li {
     @apply list-disc ml-7;
   }
