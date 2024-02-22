@@ -4,9 +4,9 @@
       <i class="fa-solid fa-arrow-left"></i>
     <% end %>
   <% end %>
-  <%= form_with url: search_path, method: :get, class: "relative w-full", data: { turbo_frame: "_top" } do |f| %>
-    <%= f.text_field :q, placeholder: "Buscar", class: "w-full bg-gv-dark-jungle border-2 border-black rounded-lg placeholder:text-gv-oasis-400 text-gv-oasis focus:ring-0 focus:border-black" %>
-    <button type="submit" class="absolute right-0 bg-zinc-900 h-full px-4 border-2 border-black border-l-0 rounded-tr-lg rounded-br-lg">
+  <%= form_with url: search_path, method: :get, class: "relative w-full flex items-center", data: { turbo_frame: "_top" } do |f| %>
+    <%= f.text_field :q, placeholder: "Buscar", class: "w-full bg-gv-dark-jungle border-0 border-b-2 border-b-gv-baltic-sea ring-0 placeholder:text-gv-oasis-400 text-gv-oasis focus:ring-0 focus:border-gv-oasis-400" %>
+    <button type="submit" class="absolute right-2 bg-gv-dark-jungle h-1/2 px-4 boder-2 border-transparent">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
   <% end %>
