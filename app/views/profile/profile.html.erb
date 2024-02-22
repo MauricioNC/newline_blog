@@ -12,10 +12,11 @@
     <nav class="w-full">
       <ul class="flex justify-start items-center gap-3 break-normal">
         <li class="shadow-hard border-2 border-black rounded-lg overflow-hidden">
-          <%= link_to user_posts_all_path(current_user.username),
+          <%= link_to user_posts_all_path,
                       data: {
                         controller: "requested-content",
                         action: "click->requested-content#highlight",
+                        turbo_frame: "posts"
                       },
                       class: "h-10 flex flex-row items-center gap-2 rounded-lg p-2 selected bg-gv-smalt-blue" do %>
             <i class="fa-regular fa-newspaper"></i>
@@ -25,10 +26,11 @@
         <li 
           class="shadow-hard border-2 border-black rounded-lg overflow-hidden"  
           >
-          <%= link_to user_posts_liked_path(current_user.username),
+          <%= link_to user_posts_liked_path,
                       data: {
                         controller: "requested-content",
-                        action: "click->requested-content#highlight"
+                        action: "click->requested-content#highlight",
+                        turbo_frame: "posts"
                       },
                       class: "h-10 flex flex-row items-center gap-2 rounded-lg p-2" do %>
             <i class="fa-solid fa-heart"></i>
@@ -39,4 +41,8 @@
     </nav>
   </div>
 </div>
-<%= turbo_frame_tag "content", src: user_posts_all_path(current_user.username), data: { turbo_action: "advance" }, class: "col-span-12" %>
+<%= turbo_frame_tag 'posts', class: 'col-span-12 flex flex-col md:justify-start md:flex-row lg:flex-col gap-4 md:flex-wrap' do %>
+  <%= @posts.each do |post| %>
+    <%= render 'shared/post', post: post %>
+  <% end %>
+<% end %>

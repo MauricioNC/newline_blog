@@ -1,14 +1,15 @@
 class ProfileController < ApplicationController
   def profile
+    @posts = current_user.posts
   end
 
   def all
-    render turbo_stream: turbo_stream.update('content', partial: 'shared/cards', locals: { posts: current_user.posts })
+    @posts ||= current_user.posts
+    render partial: 'shared/cards', locals: { posts: @posts }
   end
 
   def liked
-    @posts ||= []
-    current_user.likes.joins(:post).each { |post| @posts.push(Post.find(post.post_id)) }
-    render turbo_stream: turbo_stream.update('content', partial: 'shared/cards', locals: { posts: @posts })
+    @posts ||= Post.joins(:likes).where("likes.user_id = ?", "#{current_user.id}").order(created_at: :desc)
+    render partial: 'shared/cards', locals: { posts: @posts }
   end
 end
