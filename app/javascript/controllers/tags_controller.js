@@ -132,7 +132,6 @@ export default class extends Controller {
   }
   
   removeTagItem() {
-    document.querySelector(`.${this.element.parentElement.classList[0]}`).remove()
     this.element.parentElement.remove()
   }
 
