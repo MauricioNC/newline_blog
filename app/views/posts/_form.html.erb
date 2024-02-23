@@ -1,4 +1,4 @@
-<%= form_with(model: post, class: "col-start-2 col-span-10 lg:col-start-1 lg:col-span-8 flex flex-col gap-2 mb-5 rounded-md") do |f| %>
+<%= form_with(model: post, class: "col-start-2 col-span-10 lg:col-start-1 lg:col-span-8 flex flex-col gap-2 mb-5 rounded-md relative") do |f| %>
   <div class="form-header flex items-center mb-5">
     <div data-controller="previews">
       <div class="hidden flex-row mb-4 gap-1" data-previews-target="footerLegend">
@@ -6,7 +6,7 @@
         <button class="text-gv-fire-engine-red text-xs" data-action="click->previews#removeBanner" data-previews-target="removeBanner">remove banner</button>
       </div>
       <%= f.label :banner, 
-          class: "bg-gv-dark-jungle p-2 border-2 border-black rounded-lg block text-center",
+          class: "bg-gv-dark-jungle p-2 border-2 border-gv-oasis-400 rounded-lg block text-center hover:shadow-2xl transition duration-150",
           data: { previews_target: "labelElement" } do %>
         <span data-previews-target="labelText">Add a great banner</span>
         <%= f.file_field :banner,
@@ -27,7 +27,7 @@
   <%= f.text_field :title,
     placeholder: "Title",
     id: "titleInput", 
-    class: "bg-transparent w-full text-2xl border-0 focus:ring-0 focus:bg-gv-dark-jungle",
+    class: "bg-transparent w-full text-2xl border-0 focus:ring-0 focus:bg-gv-dark-jungle placeholder:text-gv-oasis-400",
     data: {
       controller: "tags",
       action: "focus->tags#closeTagsList"
@@ -36,9 +36,9 @@
   %>
   <%= f.text_area :body,
     placeholder: "Write your post here...",
-    class: "body bg-transparent border-0 focus:ring-0 resize-none text-lg min-h-10 xs:h-[550px] focus:bg-gv-dark-jungle overflow-auto"
+    class: "body bg-transparent border-0 focus:ring-0 resize-none text-lg min-h-10 xs:h-[550px] focus:bg-gv-dark-jungle overflow-auto placeholder:text-gv-oasis-400"
   %>
-  <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-2 border-black focus:border-black shadow-hard rounded-lg" %>
+  <%= f.submit nil, class: "bg-gv-smalt-blue p-2 border-0 focus:border-0 rounded-lg w-[30%] hover:brightness-125 hover:shadow-2xl transition duration-150" %>
 <% end %>
 <div class="hidden lg:block col-start-9 col-span-4 bg-gv-dark-jungle rounded-md">
   <h3>Markdown sintax</h3>

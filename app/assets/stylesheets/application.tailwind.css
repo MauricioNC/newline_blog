@@ -19,10 +19,8 @@
     margin-bottom: 10px;
   }
 
-  #tags-selected li {
-    background-color: #458588;
-    border-radius: 9px;
-    padding-left: 8px;
+  #tags-autocomplete {
+    scrollbar-color: #414141b9 #181818ef;
   }
 
   .body {

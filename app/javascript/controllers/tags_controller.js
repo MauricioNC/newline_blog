@@ -15,7 +15,7 @@ export default class extends Controller {
     this.comboboxTag = document.querySelector(".combobox-tags")
     this.tagsSelected = document.querySelector("#tags-selected")
     this.comboboxSearch = document.querySelector("#combobox-search") 
-    this.closeSpan = `<span class='px-2 py-1 bg-gv-smalt-blue rounded-tr-lg rounded-br-lg font-bold hover:cursor-default' data-controller='tags' data-action='click->tags#removeTagItem'>X</span>`
+    this.closeSpan = `<span class='px-3 bg-gv-baltic-sea rounded-tr-lg rounded-br-lg font-bold border-l-2 border-gv-oasis-400 hover:cursor-default' data-controller='tags' data-action='click->tags#removeTagItem'>X</span>`
 
     document.addEventListener("click", (event)=>{
       if (event.target !== this.comboboxSearch) {
@@ -59,7 +59,7 @@ export default class extends Controller {
 
   createAutoCopmpleteElement() {
     tagsAutoComplete = document.createElement("div")
-    this.setElementAttributes(tagsAutoComplete, {id: "tags-autocomplete", class: ["bg-gv-dark-jungle", "p-2", "mt-2"] })
+    this.setElementAttributes(tagsAutoComplete, {id: "tags-autocomplete", class: ["bg-gv-baltic-sea", "absolute", "p-2", "mt-2", "w-full", "shadow-2xl", "max-h-[300px]", "overflow-auto"] })
   }
 
   creatListOfTagsElement() {
@@ -77,7 +77,7 @@ export default class extends Controller {
 
   appendTagsToListOfTags(filteredTags) {
     for (let i = 0; i < filteredTags.length; i++) {
-      const li = `<li id='${filteredTags[i].tag}' class='border-b-2 border-b-gv-baltic-sea without-ring'}>
+      const li = `<li id='${filteredTags[i].tag}' class='border-0 without-ring hover:bg-gv-smalt-blue'}>
         <a class='without-ring p-2 block w-full'
           data-controller='tags'
           data-action='click->tags#appendToCombobox keydown.enter->tags#registerTagToCombobox keydown.enter->tags#appendToCombobox'
@@ -105,7 +105,7 @@ export default class extends Controller {
 
   appendToCombobox(event, value) {
     event.preventDefault()
-    const li = `<li id='${typeof value === "string" ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-2 items-center border-2 border-black shadow-hard'>
+    const li = `<li id='${typeof value === "string" ? value : this.element.textContent.trim().toLowerCase().split(' ').join('_')}' class='tag-item flex flex-row justify-between gap-2 items-center text-gv-saffron bg-gv-baltic-sea shadow-2xl pl-2 py-1 rounded-lg'>
       ${typeof value === "string" ? value : this.element.textContent}
       ${this.closeSpan}
     </li>`

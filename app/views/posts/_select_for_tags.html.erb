@@ -3,12 +3,12 @@
   <div class="combobox-tags">
     <ul id="tags-selected" class="flex felx-row gap-3 flex-wrap shrink-0"></ul>
     <ul id="combobox">
-      <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:ring-0 w-full focus:bg-gv-dark-jungle border-0" data-controller="tags" data-action="input->tags#listTags keydown.enter->tags#registerTagToCombobox"></li>
+      <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:ring-0 w-full focus:bg-gv-dark-jungle border-0 placeholder:text-gv-oasis-400" data-controller="tags" data-action="input->tags#listTags keydown.enter->tags#registerTagToCombobox"></li>
     </ul>
   </div>
 <% else %>
   <%= f.select :tag_ids, post.tags.map {|t| [t.tag, t.id, {class: "#{t.tag.split(' ').join("_")}"}] }, {include_blank: false}, {multiple: true, data: { controller: 'tags' }, style: "display:none;" } %>
-  <div class="combobox-tags">
+  <div class="combobox-tags relative">
     <ul id="tags-selected" class="flex felx-row gap-3 flex-wrap shrink-0">
       <% post.tags.each do |t| %>
         <li class='<%= t.tag.split(' ').join("_") %> tag-item flex flex-row justify-between gap-4 items-center'>
@@ -18,7 +18,7 @@
       <% end %>
     </ul>
     <ul id="combobox">
-      <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:ring-0 w-full rounded-lg focus:bg-gv-dark-jungle border-0" data-controller="tags" data-action="input->tags#listTags keydown.enter->tags#registerTagToCombobox"></li>
+      <li><input type="text" placeholder="Add some tags" id="combobox-search" class="bg-transparent focus:ring-0 w-full rounded-lg focus:bg-gv-dark-jungle border-0 placeholder:text-gv-oasis-400" data-controller="tags" data-action="input->tags#listTags keydown.enter->tags#registerTagToCombobox"></li>
     </ul>
   </div>
 <% end %>
