@@ -9,12 +9,10 @@ export default class extends Controller {
 
     window.onscroll = function() {
       if (window.scrollY >= topBarOffset) {
-        topBar.classList.remove("border-transparent")
-        topBar.classList.add("w-full", "fixed", "bg-gv-dark-jungle", "border-black")
+        topBar.classList.add("bg-gv-baltic-sea", "shadow-sm")
       }
       else {
-        topBar.classList.add("border-transparent")
-        topBar.classList.remove("w-full", "fixed", "bg-gv-dark-jungle", "border-black")
+        topBar.classList.remove("bg-gv-baltic-sea", "shadow-sm")
       }
   }
   }
